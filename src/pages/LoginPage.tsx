@@ -1,9 +1,15 @@
 import { BackArrow } from '@components/svg/BackArrow'
 import { Cross } from '@components/svg/Cross'
-import { Input } from '@components/html/Input.jsx'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { Input } from '@components/styledComponents/Input'
+import { ChangeEvent, useState } from 'react'
+import { Button } from '@components/styledComponents/Button'
 
-export function LoginPage() {
+interface LoginPageProps {
+    handleLogin: () => void; // Define que handleLogin es una función que no recibe argumentos y no retorna nada
+  }
+
+  export const LoginPage = ({ handleLogin }: LoginPageProps) => {
+
 
     const [name, setName] = useState('')
 
@@ -26,7 +32,7 @@ export function LoginPage() {
                 </div>
 
                 <div className='flex flex-col'>
-                    <input onChange={handleClick} placeholder='Nombre y apellidos' type="text" />
+                    <Input onChange={handleClick} placeholder='Nombre y apellidos' type="text" />
                     <Input placeholder='Direccion de email' type="text" />
                     <Input placeholder='Contraseña'  type="text" />
                     <Input placeholder='Nombre'  type="text" />
@@ -44,7 +50,7 @@ export function LoginPage() {
                 </div>
 
                 <div className='w-full my-14 flex items-end justify-center'>
-                    <button className='' type='submit'>Crear una cuenta</button>
+                    <Button onClick={handleLogin}  type='submit'>Crear una cuenta</Button>
                 </div>
             </form>
         </div>
