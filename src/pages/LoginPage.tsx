@@ -4,23 +4,25 @@ import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 
-interface LoginPageProps {
-    handleLogin: () => void; // Define que handleLogin es una función que no recibe argumentos y no retorna nada
-}
+import { login } from './auth/service'
+
+
+//interface LoginPageProps {
+//    handleLogin: () => void; // Define que handleLogin es una función que no recibe argumentos y no retorna nada
+//}
 
 interface Credentials {
-    name?: string;
     email?: string;
     password?: string;
 }
 
-export const LoginPage = ({ handleLogin }: LoginPageProps) => {
+//export const LoginPage = ({ handleLogin }: LoginPageProps) => {
+export const LoginPage = () => {
 
 
     const [credentials, setCredentials] = useState<Credentials>({
-        name: '',
-        email: '',
-        password: '',
+        email: 'pedro@gmail.com',
+        password: 'pedro',
     })
 
     const handleSubmit = (event) => {
@@ -51,10 +53,8 @@ export const LoginPage = ({ handleLogin }: LoginPageProps) => {
                 </div>
 
                 <div className='flex flex-col'>
-                    <Input value={credentials.name} name='name' onChange={handleCredentials} placeholder='Nombre y apellidos' type="text" />
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
                     <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="text" />
-                    <Input placeholder='Nombre' type="text" />
                     <span>*Al menos 8 caracteres</span>
                 </div>
 
@@ -69,7 +69,7 @@ export const LoginPage = ({ handleLogin }: LoginPageProps) => {
                 </div>
 
                 <div className='w-full my-14 flex items-end justify-center'>
-                    <Button onClick={handleLogin} type='submit'>Crear una cuenta</Button>
+                    <Button onClick={() => login(credentials)} type='submit'>Crear una cuenta</Button>
                 </div>
             </form>
         </div>
