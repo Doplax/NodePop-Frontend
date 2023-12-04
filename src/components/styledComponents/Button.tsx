@@ -23,8 +23,6 @@ type Variant = 'primary' | 'default';
 export const Button = styled.button<{$variant?: Variant}>`
     ${props => {
         const variant = props.$variant || 'default'; // Si $variant no está definido, usa 'default'
-        console.log('Variant:', variant); // Verifica el valor de $variant
-        console.log('Selected Style:', styles[variant]); // Verifica el estilo seleccionado
         return styles[variant];
     }}
 `;

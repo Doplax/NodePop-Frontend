@@ -1,27 +1,46 @@
 import { BackArrow } from '@components/svg/BackArrow'
 import { Cross } from '@components/svg/Cross'
 import { Input } from '@components/styledComponents/Input'
-import { ChangeEvent, useState } from 'react'
 import { Button } from '@components/styledComponents/Button'
+import { useState } from 'react';
 
 interface LoginPageProps {
     handleLogin: () => void; // Define que handleLogin es una función que no recibe argumentos y no retorna nada
-  }
+}
 
-  export const LoginPage = ({ handleLogin }: LoginPageProps) => {
+interface Credentials {
+    name?: string;
+    email?: string;
+    password?: string;
+}
+
+export const LoginPage = ({ handleLogin }: LoginPageProps) => {
 
 
-    const [name, setName] = useState('')
+    const [credentials, setCredentials] = useState<Credentials>({
+        name: '',
+        email: '',
+        password: '',
+    })
 
-    const handleClick = (event: ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value)
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+    }
+
+    const handleCredentials = (event) => {
+        setCredentials(currentCredentials => ({
+            ...currentCredentials,
+            [event.target.name]: event.target.value, // Es necesaria la propiedad name en el input de abajo para que esto funcione
+        }))
+        console.table(event.target.name);
     }
 
 
-    console.log(name);
+
     return (
         <div className='w-full h-full flex justify-center align-middle'>
-            <form className='bg-slate-100 w-[400px] p-8  rounded-lg ' >
+            <form className='bg-slate-100 w-[400px] p-8  rounded-lg ' onSubmit={handleSubmit} >
                 <div className='flex justify-between  '>
                     <BackArrow></BackArrow>
                     <Cross></Cross>
@@ -32,10 +51,10 @@ interface LoginPageProps {
                 </div>
 
                 <div className='flex flex-col'>
-                    <Input onChange={handleClick} placeholder='Nombre y apellidos' type="text" />
-                    <Input placeholder='Direccion de email' type="text" />
-                    <Input placeholder='Contraseña'  type="text" />
-                    <Input placeholder='Nombre'  type="text" />
+                    <Input value={credentials.name} name='name' onChange={handleCredentials} placeholder='Nombre y apellidos' type="text" />
+                    <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
+                    <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="text" />
+                    <Input placeholder='Nombre' type="text" />
                     <span>*Al menos 8 caracteres</span>
                 </div>
 
@@ -50,7 +69,7 @@ interface LoginPageProps {
                 </div>
 
                 <div className='w-full my-14 flex items-end justify-center'>
-                    <Button onClick={handleLogin}  type='submit'>Crear una cuenta</Button>
+                    <Button onClick={handleLogin} type='submit'>Crear una cuenta</Button>
                 </div>
             </form>
         </div>
