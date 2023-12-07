@@ -16,10 +16,7 @@ interface Credentials {
     password?: string;
 }
 
-//export const LoginPage = ({ handleLogin }: LoginPageProps) => {
 export const LoginPage = () => {
-
-
     const [credentials, setCredentials] = useState<Credentials>({
         email: 'pedro@gmail.com',
         password: 'pedro',
@@ -27,7 +24,6 @@ export const LoginPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
     }
 
     const handleCredentials = (event) => {

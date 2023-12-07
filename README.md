@@ -2,18 +2,18 @@
 
 ## Páginas y Rutas
 ### Públicas
-- [ ] `/login`: LoginPage
+- [ x ] `/login`: LoginPage
 
 ### Protegidas
-- [ ] `/`: Redirecciona a `/adverts`
-- [ ] `/adverts`: AdvertsPage
-- [ ] `/adverts/:id`: AdvertPage
-- [ ] `/adverts/new`: NewAdvertPage
-- [ ] *Para cualquier otra URL*: NotFoundPage (404)
+- [ x ] `/`: Redirecciona a `/adverts`
+- [ x ] `/adverts`: AdvertsPage
+- [ x ] `/adverts/:id`: AdvertPage
+- [ x ] `/adverts/new`: NewAdvertPage
+- [ x ] *Para cualquier otra URL*: NotFoundPage (404)
 
 ## Funcionalidad de cada Página-Componente
 ### LoginPage
-- [ ] Formulario para email y password
+- [ x ] Formulario para email y password
 - [ ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
 
 ### AdvertsPage
