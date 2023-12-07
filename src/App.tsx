@@ -1,5 +1,5 @@
 
-import './App.css'
+import Layout from '@components/layout/Layout';
 import { LoginPage } from './pages/LoginPage';
 
 function App() {
@@ -9,7 +9,9 @@ function App() {
   
   return (
     <>
+    <Layout>
      <LoginPage/>
+    </Layout>
     </>    
   );
 }

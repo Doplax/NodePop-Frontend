@@ -1,30 +1,44 @@
-# React + TypeScript + Vite
+# Checklist para Aplicación SPA en React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Páginas y Rutas
+### Públicas
+- [ ] `/login`: LoginPage
 
-Currently, two official plugins are available:
+### Protegidas
+- [ ] `/`: Redirecciona a `/adverts`
+- [ ] `/adverts`: AdvertsPage
+- [ ] `/adverts/:id`: AdvertPage
+- [ ] `/adverts/new`: NewAdvertPage
+- [ ] *Para cualquier otra URL*: NotFoundPage (404)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidad de cada Página-Componente
+### LoginPage
+- [ ] Formulario para email y password
+- [ ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
 
-## Expanding the ESLint configuration
+### AdvertsPage
+- [ ] Listado de anuncios (nombre, precio, tipo, tags)
+- [ ] Manejo de estado para "sin anuncios"
+- [ ] Enlace a detalle de anuncio (`/adverts/:id`)
+- [ ] Zona de filtros (nombre, tipo, precio, tags)
+- [ ] Opción de filtrado dinámico o filtrado con botón
+- [ ] Implementar mínimo 2 filtros (nombre, tipo, precio, tags)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### AdvertPage
+- [ ] Detalle de anuncio según ID
+- [ ] Mostrar foto del anuncio o placeholder
+- [ ] Redireccionar a NotFoundPage si el anuncio no existe
+- [ ] Botón para borrar anuncio con confirmación
 
-- Configure the top-level `parserOptions` property like this:
+### NewAdvertPage
+- [ ] Formulario para crear anuncio (nombre, tipo, tags, precio, foto)
+- [ ] Validaciones de formulario (todos los campos excepto foto requeridos)
+- [ ] Redireccionar a la página del anuncio tras creación
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Componentes Adicionales
+- [ ] Componente de Logout visible cuando el usuario está logueado
+- [ ] Enlaces de navegación para `/adverts` y `/adverts/new`
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Notas Adicionales
+- Considerar la reutilización de componentes (por ejemplo, para confirmaciones)
+- Priorizar la práctica con el estado de React
