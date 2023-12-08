@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const RenderNavLinks = () => {
   const navLinks = [
-    { title: "Home", link: "/home" },
+    { title: "Adverts", link: "/adverts" },
     { title: "Login", link: "/login" },
     { title: "New", link: "/adverts/new" },
    

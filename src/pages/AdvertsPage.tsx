@@ -1,9 +1,9 @@
 
-
 export function AdvertsPage(){
+ 
     return(
         <>
-            <h1>AdvertsPage</h1>
+            <h1>Página de Anuncios</h1>
         </>
     )
 }

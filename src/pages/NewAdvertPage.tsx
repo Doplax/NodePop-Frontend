@@ -4,9 +4,13 @@ import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 import { createAdvert } from '../services/advertsService'
+import { useNavigate } from 'react-router';
 
 
 export const NewAdvertPage = () => {
+
+    const navigate = useNavigate();
+    
     const [advertData, setAdvertData] = useState({
         name: 'product',
         sale: true,
@@ -18,8 +22,11 @@ export const NewAdvertPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            console.log(createAdvert(advertData));
-            await createAdvert(advertData)
+            const response = await createAdvert(advertData)
+            const advertId = response.id
+            console.log(advertId);
+            navigate(`../${advertId}`, { relative: 'path' });
+
         } catch (error) {
             console.log(error);
         }
@@ -54,10 +61,10 @@ export const NewAdvertPage = () => {
 
                 {/* Inptus */}
                 <div className='flex flex-col'>
-                    <Input value={advertData.name} name='name' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
-                    <Input value={advertData.price} name='price' onChange={handleCredentials} placeholder='Contraseña' type="number" />
-                    <Input value={advertData.tags} name='tags' onChange={handleCredentials} placeholder='Contraseña' type="text" />
-                    <input checked={advertData.sale} name='sale' onChange={handleCredentials} type="checkbox" />
+                    <Input required value={advertData.name} name='name' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
+                    <Input required value={advertData.price} name='price' onChange={handleCredentials} placeholder='Contraseña' type="number" />
+                    <Input required value={advertData.tags} name='tags' onChange={handleCredentials} placeholder='Contraseña' type="text" />
+                    <input required checked={advertData.sale} name='sale' onChange={handleCredentials} type="checkbox" />
                 </div>
 
 

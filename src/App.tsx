@@ -27,7 +27,7 @@ function App() {
         path="/adverts/:advertId"
         element={
           <Layout>
-            <AdvertPage />
+            <AdvertPage/>
           </Layout>
         }
       />
