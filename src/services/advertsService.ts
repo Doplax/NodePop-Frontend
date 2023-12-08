@@ -8,6 +8,11 @@ export const getSingleAdvert = (advertId) => {
     return client.get(`${url}/${advertId}`);
 }
 
+export const getAdverts = () => {
+    const url = advertsBaseUrl;
+    return client.get(url);
+}
+
 export const createAdvert = (advert) => {
     const url = advertsBaseUrl;
     return client.post(url, advert);

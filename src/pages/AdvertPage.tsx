@@ -18,7 +18,7 @@ export function AdvertPage(){
             setAdvertData({name, sale, price, tags})
         }
         fetchAdvert()
-    },[])
+    },[advertId])
     
     console.log(advertData);
     console.log(advertData.sale);
