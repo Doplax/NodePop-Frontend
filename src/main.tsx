@@ -4,6 +4,14 @@ import App from './App.js'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 
+import { storage } from '@utils/storage';
+import { setAuthorizationHeader } from './api/client.js'
+
+const accessToken = storage.get('auth');
+if (accessToken) {
+  setAuthorizationHeader(accessToken);
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>

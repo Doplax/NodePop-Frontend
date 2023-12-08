@@ -5,7 +5,8 @@ const RenderNavLinks = () => {
   const navLinks = [
     { title: "Home", link: "/home" },
     { title: "Login", link: "/login" },
-    { title: "About", link: "/About" },
+    { title: "New", link: "/adverts/new" },
+   
   ];
 
   return (

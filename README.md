@@ -17,7 +17,7 @@
 - [ ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
 
 ### AdvertsPage
-- [ ] Listado de anuncios (nombre, precio, tipo, tags)
+- [  ] Listado de anuncios (nombre, precio, tipo, tags)
 - [ ] Manejo de estado para "sin anuncios"
 - [ ] Enlace a detalle de anuncio (`/adverts/:id`)
 - [ ] Zona de filtros (nombre, tipo, precio, tags)
@@ -31,7 +31,8 @@
 - [ ] Botón para borrar anuncio con confirmación
 
 ### NewAdvertPage
-- [ ] Formulario para crear anuncio (nombre, tipo, tags, precio, foto)
+- [ x ] Formulario para crear anuncio (nombre, tipo, tags, precio, foto)
+(Falta Foto)
 - [ ] Validaciones de formulario (todos los campos excepto foto requeridos)
 - [ ] Redireccionar a la página del anuncio tras creación
 

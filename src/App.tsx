@@ -33,7 +33,7 @@ function App() {
       />
 
       <Route
-        path="/tweets/new"
+        path="/adverts/new"
         element={
           <Layout>
             <NewAdvertPage />

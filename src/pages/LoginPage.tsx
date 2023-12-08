@@ -4,12 +4,8 @@ import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 
-import { login } from './auth/service'
+import { login } from '../services/authService'
 
-
-//interface LoginPageProps {
-//    handleLogin: () => void; // Define que handleLogin es una función que no recibe argumentos y no retorna nada
-//}
 
 interface Credentials {
     email?: string;
