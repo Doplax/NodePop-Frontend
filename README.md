@@ -19,13 +19,13 @@
 ### AdvertsPage
 - [  ] Listado de anuncios (nombre, precio, tipo, tags)
 - [ ] Manejo de estado para "sin anuncios"
-- [ ] Enlace a detalle de anuncio (`/adverts/:id`)
+- [ x ] Enlace a detalle de anuncio (`/adverts/:id`)
 - [ ] Zona de filtros (nombre, tipo, precio, tags)
 - [ ] Opción de filtrado dinámico o filtrado con botón
 - [ ] Implementar mínimo 2 filtros (nombre, tipo, precio, tags)
 
 ### AdvertPage
-- [ ] Detalle de anuncio según ID
+- [ x ] Detalle de anuncio según ID
 - [ ] Mostrar foto del anuncio o placeholder
 - [ ] Redireccionar a NotFoundPage si el anuncio no existe
 - [ ] Botón para borrar anuncio con confirmación
@@ -33,8 +33,8 @@
 ### NewAdvertPage
 - [ x ] Formulario para crear anuncio (nombre, tipo, tags, precio, foto)
 (Falta Foto)
-- [ ] Validaciones de formulario (todos los campos excepto foto requeridos)
-- [ ] Redireccionar a la página del anuncio tras creación
+- [ x ] Validaciones de formulario (todos los campos excepto foto requeridos)
+- [ x ] Redireccionar a la página del anuncio tras creación
 
 ## Componentes Adicionales
 - [ ] Componente de Logout visible cuando el usuario está logueado
