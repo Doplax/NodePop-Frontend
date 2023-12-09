@@ -28,7 +28,7 @@ export function AdvertsPage() {
 }
 
 
-function RenderAdvertList(advertsList) {
+    function RenderAdvertList({advertsList}) {
     return (
         <>
             {advertsList.map((advert, key) => (

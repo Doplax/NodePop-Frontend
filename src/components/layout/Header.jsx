@@ -1,21 +1,26 @@
 import { useState } from "react";
-import  logo  from '../../../public/images/logo.webp'
-import  textLogo  from '/images/textLogo.png'
-
+import { Button } from "@components/styledComponents/Button.tsx";
+import logo from "../../../public/images/logo.webp";
+import textLogo from "/images/textLogo.png";
 
 const RenderNavLinks = () => {
   const navLinks = [
-    { title: "Adverts", link: "/adverts" },
-    { title: "Login", link: "/login" },
-    { title: "New", link: "/adverts/new" },
+    //{ title: "Adverts", link: "/adverts", },
+    { title: "Inicia sesión ", link: "/login", variant: "default" },
+    { title: "Subir Producto ", link: "/adverts/new", variant: "fullFill" },
   ];
 
   return (
     <>
       {navLinks.map((linkItem) => (
         <li key={linkItem.link} className="mb-1">
-          <a className="flex justify-center md:p-4 py-2 font-bold hover:text-[#ffa700]" href={linkItem.link}>
-            {linkItem.title}
+          <a
+            className="flex justify-center md:px-1 py-2 font-bold hover:text-[#ffa700]"
+            href={linkItem.link}
+          >
+            <Button className="text-base" $variant={linkItem.variant}>
+              {linkItem.title}
+            </Button>
           </a>
         </li>
       ))}
@@ -31,20 +36,26 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex flex-col items-center justify-between w-full py-4 md:py-2 px-4 text-lg text-gray-700 shadow-sm bg-white mb-10">
+    <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-10">
       <div className="flex flex-row w-full justify-between">
         {/* Logo */}
-        <a
-          className="flex justify-center items-center "
-          href="/"
-        >
-          <img className="h-10 m-2" src={logo} alt="logo"/>
+        <a className="flex justify-center items-center" href="/">
+          <img className="h-10 m-2" src={logo} alt="logo" />
           <img className="hidden md:flex" src={textLogo} alt="text logo" />
         </a>
 
+        {/* Search Bar */}
+        <div className="flex items-center justify-center flex-1 mx-5">
+          <input
+            className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:outline-none"
+            type="search"
+            placeholder="Buscar en Todas las categorías"
+          />
+        </div>
+
         {/* Desktop Menu */}
         <nav className="hidden md:flex md:items-center">
-          <ul className={`p-2 flex`}>
+          <ul className={`flex`}>
             <RenderNavLinks />
           </ul>
         </nav>
@@ -69,7 +80,11 @@ export const Header = () => {
       </div>
 
       {/* Movile Menu */}
-      <nav className={`transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100" : "opacity-0"}`}>
+      <nav
+        className={`transition-all duration-300 ease-in-out ${
+          isMenuOpen ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <ul className={`p-2 ${isMenuOpen ? "flex flex-col" : "hidden"}`}>
           <RenderNavLinks />
         </ul>

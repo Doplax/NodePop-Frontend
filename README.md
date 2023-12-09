@@ -18,7 +18,7 @@
 
 ### AdvertsPage
 - [ x ] Listado de anuncios (nombre, precio, tipo, tags)
-- [ ] Manejo de estado para "sin anuncios"
+- [ x ] Manejo de estado para "sin anuncios"
 - [ x ] Enlace a detalle de anuncio (`/adverts/:id`)
 - [ ] Zona de filtros (nombre, tipo, precio, tags)
 - [ ] Opción de filtrado dinámico o filtrado con botón

@@ -33,11 +33,11 @@ export const LoginPage = () => {
 
 
     return (
-        <div className='w-full h-full flex justify-center align-middle'>
-            <form className='bg-slate-100 w-[400px] p-8  rounded-lg ' onSubmit={handleSubmit} >
+        <div className='w-screen h-screen items-center  flex justify-center bg-[#29363dcc]'>
+            <form className='bg-white w-[400px] h-max  p-8  rounded-lg ' onSubmit={handleSubmit} >
                 <div className='flex justify-between  '>
-                    <BackArrow></BackArrow>
-                    <Cross></Cross>
+                    <a href="/"><BackArrow/></a>
+                    <a href="/"><Cross/></a>
                 </div>
 
                 <div className='my-3'>
@@ -47,21 +47,16 @@ export const LoginPage = () => {
                 <div className='flex flex-col'>
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
                     <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="text" />
-                    <span>*Al menos 8 caracteres</span>
-                </div>
-
-                <div className='m-5 pt-10'>
-                    <div className='flex'>
+                    <div className='m-5'>
                         <input type="checkbox" />
-                        <span>Quiero recibir comunicaciones sobre promociones y novedades de Wallapop</span>                </div>
-                </div>
-                <div className='flex'>
-                    <input type="checkbox" />
-                    <span slot="label">He leído y acepto las <a href="https://about.wallapop.com/condiciones-de-uso/" target="_blank">Condiciones de uso</a> y la <a href="https://about.wallapop.com/politica-privacidad/" target="_blank">Política de privacidad</a> de Wallapop.</span>
+                        <span> Recordar contraseña</span>
+                    </div>
                 </div>
 
-                <div className='w-full my-14 flex items-end justify-center'>
-                    <Button onClick={() => login(credentials)} type='submit'>Crear una cuenta</Button>
+               
+
+                <div className='w-full mt-10 flex items-end justify-center'>
+                    <Button $variant='fullFill' onClick={() => login(credentials)} type='submit'>Iniciar sesión</Button>
                 </div>
             </form>
         </div>

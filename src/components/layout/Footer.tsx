@@ -27,7 +27,7 @@ export default function Footer() {
 
 function Column({ title, links }) {
   return (
-    <div className="footer-column mx-5">
+    <div className="flex-1 m-5">
       <h3 className="text-[#607D8B] font-bold">{title}</h3>
       <ul>
         {links.map((link, index) => (
