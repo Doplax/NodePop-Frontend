@@ -5,30 +5,35 @@ const styles = {
     fullFill: `
         font-size: 18px;
         padding: 0 20px;
-        height: 40px;
-        border-radius: 30px;
-        border: 1px solid #13c1ac;
-        background-color: #13c1ac;
+        background-color: var(--primary-color);
         color: white;
-        cursor: pointer;
-        white-space: nowrap;
+        &:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
     `,
 
     default: `
         font-size: 18px;
         padding: 0 20px;
-        height: 40px;
-        border-radius: 30px;
-        border: 1px solid #13c1ac;
-        color: #13c1ac;
-        cursor: pointer;
-        white-space: nowrap;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        &:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
     `
 }
 
 type Variant = 'fullFill' | 'default';
 
 export const Button = styled.button<{$variant?: Variant}>`
+    cursor: pointer;
+    white-space: nowrap;
+    height: 40px;
+    border-radius: 30px;
+
+
     ${props => {
         const variant = props.$variant || 'default'; // Si $variant no está definido, usa 'default'
         return styles[variant];

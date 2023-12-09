@@ -35,13 +35,13 @@ export function AdvertsPage() {
                 <a href={`/adverts/${advert.id}`} key={key} className="m-3">
                     <div className="max-w-sm rounded overflow-hidden">
                         <img className="w-full rounded-lg" src="https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true" alt={`${advert.name}`} />
-                        <div className=" flex items-center">
+                        <div className="flex justify-between w-full mt-1">
                             <span className="text-gray-700 font-bold text-xl">{advert.price} $</span>
+                            <span className="bg-[--primary-color] font-semibold text-white rounded-md text-sm py-1 px-2 hover:bg-[--secondary-color]">{advert.tags}</span>
                         </div>
-                        <div className="">
-                            <p className="text-gray-700 text-base">
-                                {advert.name}
-                            </p>
+                        <div className="flex justify-between w-full">
+                            <span>{advert.name}</span>
+                            <span> {advert.sale ? "En Venta" : "NO en venta"}</span>
                         </div>
                     </div>
                 </a>

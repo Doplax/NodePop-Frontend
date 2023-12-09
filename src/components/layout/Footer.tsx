@@ -9,7 +9,7 @@ export default function Footer() {
 
 
   return (
-   <footer className="mt-20 w-full flex md:justify-center  flex-wrap justify-between">
+   <footer className="mt-20 md:px-36 flex justify-center flex-wrap">
       <div className='mx-5'>
         <img src={textLogo} alt="" />
         <p className='text-sm my-5 text-[#90A4AE] '>Copyright© 2023 Wallapop© <br/> de sus respectivos propietarios</p>
