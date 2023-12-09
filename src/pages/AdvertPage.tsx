@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getSingleAdvert } from "@services/advertsService";
+import { PageNotFound } from "./PageNotFound";
 
 export function AdvertPage() {
     const { advertId } = useParams()
 
     const [advertData, setAdvertData] = useState({
-        name: 'name',
-        sale: true,
-        price: 100,
+        name: '',
+        sale: false,
+        price: 0,
         tags: ['tag'],
         image: 'https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true'
     });
@@ -18,15 +19,27 @@ export function AdvertPage() {
             const { name, sale, price, tags } = await getSingleAdvert(advertId)
             setAdvertData({...advertData, name, sale, price, tags})
         }
-        fetchAdvert()
+        try {
+            fetchAdvert()
+        } catch (error) {
+            console.error(error)
+        }
     }, [advertId])
-
-    console.log(advertData.image);
 
 
     return (
         <>
-            <div className=" rounded-lg overflow-hidden p-6">
+            {advertData.name.length > 0 
+                ? <RenderAdvert advertData={advertData} />
+                : <PageNotFound/>
+                }
+        </>
+    )
+}
+
+function RenderAdvert({advertData}) {
+    return(
+        <div className=" rounded-lg overflow-hidden p-6">
                 <div className="container px-5 py-24 mx-auto" >
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
                         <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
@@ -117,6 +130,5 @@ export function AdvertPage() {
                     </div>
                 </div>
             </div>
-        </>
     )
 }

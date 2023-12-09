@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@components/styledComponents/Button.tsx";
-import logo from "../../../public/images/logo.webp";
+import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
 
 const RenderNavLinks = () => {
@@ -47,7 +47,7 @@ export const Header = () => {
         {/* Search Bar */}
         <div className="flex items-center justify-center flex-1 mx-5">
           <input
-            className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:outline-none"
+            className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:border-stone-700 focus:outline-none"
             type="search"
             placeholder="Buscar en Todas las categorías"
           />
