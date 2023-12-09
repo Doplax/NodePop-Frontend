@@ -7,6 +7,7 @@ import { NewAdvertPage } from '@pages/NewAdvertPage';
 import Layout from "@components/layout";
 
 import { Route, Routes, Navigate } from "react-router-dom";
+import { PageNotFound } from "@pages/PageNotFound";
 
 
 function App() {
@@ -40,8 +41,13 @@ function App() {
           </Layout>
         }
       />
+      <Route path="/404" element={
+        <Layout>
+          <PageNotFound/>
+        </Layout>
+      } />
+
       <Route path="/" element={<Navigate to="/adverts" />} />
-      <Route path="/404" element={<div>404 | Not found</div>} />
       <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   );

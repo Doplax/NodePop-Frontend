@@ -1,4 +1,6 @@
 import { useState } from "react";
+import  logo  from '../../../public/images/logo.webp'
+import  textLogo  from '/images/textLogo.png'
 
 
 const RenderNavLinks = () => {
@@ -6,7 +8,6 @@ const RenderNavLinks = () => {
     { title: "Adverts", link: "/adverts" },
     { title: "Login", link: "/login" },
     { title: "New", link: "/adverts/new" },
-   
   ];
 
   return (
@@ -30,14 +31,15 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex flex-col items-center justify-between w-full py-4 md:py-2 px-4 text-lg text-gray-700 shadow-md bg-white mb-10">
+    <header className="flex flex-col items-center justify-between w-full py-4 md:py-2 px-4 text-lg text-gray-700 shadow-sm bg-white mb-10">
       <div className="flex flex-row w-full justify-between">
         {/* Logo */}
         <a
           className="flex justify-center items-center "
-          href="https://doplax.dev/"
+          href="/"
         >
-          <h1>Wallapop</h1>
+          <img className="h-10 m-2" src={logo} alt="logo"/>
+          <img className="hidden md:flex" src={textLogo} alt="text logo" />
         </a>
 
         {/* Desktop Menu */}

@@ -2,15 +2,23 @@ import styled from 'styled-components'
 
 
 const styles = {
-    primary: `
-        background-color:red;
+    fullFill: `
+        font-size: 18px;
+        padding: 0 20px;
+        height: 40px;
+        border-radius: 30px;
+        border: 1px solid #13c1ac;
+        background-color: #13c1ac;
+        color: white;
+        cursor: pointer;
+        white-space: nowrap;
     `,
 
     default: `
-        font-size: .875rem;
+        font-size: 18px;
         padding: 0 20px;
         height: 40px;
-        background-color: #fff;
+        border-radius: 30px;
         border: 1px solid #13c1ac;
         color: #13c1ac;
         cursor: pointer;
@@ -18,7 +26,7 @@ const styles = {
     `
 }
 
-type Variant = 'primary' | 'default';
+type Variant = 'fullFill' | 'default';
 
 export const Button = styled.button<{$variant?: Variant}>`
     ${props => {

@@ -1,8 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
+:root {
+  --primary-color: #FFC107; /* Color primario hipotético */
+  --wallapop-secondary: #37474F; /* Color secundario hipotético */
+  --wallapop-text: #333333; /* Color de texto común */
+  --wallapop-background: #F5F5F5; /* Color de fondo general */
+  --wallapop-footer-background: #FFFFFF; /* Color de fondo del pie de página */
+}
 body {
   height: 100vh;
   width: 100%;

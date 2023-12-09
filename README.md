@@ -17,7 +17,7 @@
 - [ ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
 
 ### AdvertsPage
-- [  ] Listado de anuncios (nombre, precio, tipo, tags)
+- [ x ] Listado de anuncios (nombre, precio, tipo, tags)
 - [ ] Manejo de estado para "sin anuncios"
 - [ x ] Enlace a detalle de anuncio (`/adverts/:id`)
 - [ ] Zona de filtros (nombre, tipo, precio, tags)
@@ -26,7 +26,7 @@
 
 ### AdvertPage
 - [ x ] Detalle de anuncio según ID
-- [ ] Mostrar foto del anuncio o placeholder
+- [ x ] Mostrar foto del anuncio o placeholder
 - [ ] Redireccionar a NotFoundPage si el anuncio no existe
 - [ ] Botón para borrar anuncio con confirmación
 
