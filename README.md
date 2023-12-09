@@ -27,7 +27,7 @@
 ### AdvertPage
 - [ x ] Detalle de anuncio según ID
 - [ x ] Mostrar foto del anuncio o placeholder
-- [ ] Redireccionar a NotFoundPage si el anuncio no existe
+- [ x ] Redireccionar a NotFoundPage si el anuncio no existe
 - [ ] Botón para borrar anuncio con confirmación
 
 ### NewAdvertPage

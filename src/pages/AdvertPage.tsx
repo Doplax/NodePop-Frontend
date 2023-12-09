@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { getSingleAdvert } from "@services/advertsService";
-import { PageNotFound } from "./PageNotFound";
+
 
 export function AdvertPage() {
     const { advertId } = useParams()
@@ -14,25 +14,32 @@ export function AdvertPage() {
         image: 'https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true'
     });
 
+    const [redirectToNotFound, setRedirectToNotFound] = useState(false);
+
+
     useEffect(() => {
         const fetchAdvert = async () => {
-            const { name, sale, price, tags } = await getSingleAdvert(advertId)
-            setAdvertData({...advertData, name, sale, price, tags})
-        }
-        try {
-            fetchAdvert()
-        } catch (error) {
-            console.error(error)
-        }
-    }, [advertId])
+            try {
+                const { name, sale, price, tags } = await getSingleAdvert(advertId);
+                setAdvertData({ ...advertData, name, sale, price, tags });
+            } catch (error) {
+                console.error('Error', error);
+                setRedirectToNotFound(true);
+            }
+        };
+    
+        fetchAdvert();
+    }, [advertId]);
+    
 
 
     return (
         <>
-            {advertData.name.length > 0 
-                ? <RenderAdvert advertData={advertData} />
-                : <PageNotFound/>
-                }
+            {redirectToNotFound ? <Navigate to="/404" /> : null}
+            {redirectToNotFound  
+                ? <Navigate to="/404"/>
+                : <RenderAdvert advertData={advertData} />
+            }
         </>
     )
 }
