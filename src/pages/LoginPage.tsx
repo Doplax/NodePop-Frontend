@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { login } from '../services/authService'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useAuthHandlers } from '../auth/AuthContextProvider'
 
 
 interface Credentials {
@@ -15,6 +16,9 @@ interface Credentials {
 }
 
 export const LoginPage = () => {
+    const { onLogin } = useAuthHandlers();
+
+
     const navigate = useNavigate()
     console.log("login");
     const [credentials, setCredentials] = useState<Credentials>({
@@ -28,6 +32,7 @@ export const LoginPage = () => {
        try{
         event.preventDefault();
         await login(credentials,rememberPassword)
+        onLogin();
         navigate('/')
        } catch (error) {
         console.log(error);
