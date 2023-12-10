@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getSingleAdvert } from "@services/advertsService";
+import { Button } from '@components/styledComponents/Button'
+
+import { deleteAdvert } from '@services/advertsService'
 
 
 export function AdvertPage() {
@@ -8,6 +11,7 @@ export function AdvertPage() {
     const navigate = useNavigate()
 
     const [advertData, setAdvertData] = useState({
+        id:'',
         name: '',
         sale: false,
         price: 0,
@@ -22,8 +26,9 @@ export function AdvertPage() {
             try {
                 
                 const response = await getSingleAdvert(advertId);
-                const { name, sale, price, tags } = response.data
-                setAdvertData({ ...advertData, name, sale, price, tags });
+                const { name, sale, price, tags , id } = response.data
+                console.log( response.data);
+                setAdvertData({ ...advertData, id, name, sale, price, tags});
             } catch (error) {
                 console.error('Error', error);
                 navigate('/404')
@@ -32,8 +37,6 @@ export function AdvertPage() {
     
         fetchAdvert();
     }, []);
-    
-
 
     return (
         <>
@@ -47,6 +50,15 @@ export function AdvertPage() {
 }
 
 function RenderAdvert({advertData}) {
+    const navigate = useNavigate()
+    const handleDeleteAdvert = async () => {
+        try {
+            await deleteAdvert(advertData.id)
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return(
         <div className=" rounded-lg overflow-hidden p-6">
                 <div className="container px-5 py-24 mx-auto" >
@@ -130,10 +142,9 @@ function RenderAdvert({advertData}) {
                             <div className="flex">
                                 <span className="title-font font-medium text-2xl text-gray-900">{advertData.price.toFixed(2)} $
                                 </span>
-                                <button
-                                    className="flex ml-auto text-white bg-greenColor font-bold border-0 py-2 px-6 focus:outline-none rounded">
-                                    Buy
-                                </button>
+                            </div>
+                            <div>
+                                <Button onClick={() => {handleDeleteAdvert()}} className="w" $variant="danger"> Buy </Button>
                             </div>
                         </div>
                     </div>

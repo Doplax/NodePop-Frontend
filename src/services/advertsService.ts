@@ -19,3 +19,9 @@ export const createAdvert = (advert) => {
     console.log(client.defaults.headers.common['Authorization']);
     return client.post(url, advert);
 }
+
+
+export const deleteAdvert = (advertId) => {
+    const url = advertsBaseUrl;
+    return client.delete(`${url}/${advertId}`);
+}
