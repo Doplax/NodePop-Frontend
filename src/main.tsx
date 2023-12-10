@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.js'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
-import {AuthContextProvider} from './auth/AuthContextProvider'
+import {AuthContextProvider} from './auth/AuthContextProvider.jsx'
 import { storage } from '@utils/storage';
 import { setAuthorizationHeader } from './api/client.js'
 

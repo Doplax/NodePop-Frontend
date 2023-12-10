@@ -1,7 +1,8 @@
 import Footer from "./Footer";
 import { Header } from "./Header";
-import { useIsLogged } from '../../auth/AuthContextProvider'
 import { Navigate } from "react-router-dom";
+import { useIsLogged } from '@auth/AuthContextProvider'
+
 
 
 export default function Index({ children }) {

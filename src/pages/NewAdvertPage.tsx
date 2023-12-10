@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 
 
 export const NewAdvertPage = () => {
-
     const navigate = useNavigate();
     
+
     const [advertData, setAdvertData] = useState({
         name: 'product',
         sale: true,
@@ -23,7 +23,6 @@ export const NewAdvertPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            
             const response = await createAdvert(advertData)
             const advertId = response.data.id
             console.log(advertId);

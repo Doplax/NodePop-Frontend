@@ -28,6 +28,8 @@
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
       "@services/*": ["src/services/*"],
+      "@auth/*": ["src/auth/*"],
+
 
 
       

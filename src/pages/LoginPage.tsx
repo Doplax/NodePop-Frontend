@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { login } from '../services/authService'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useAuthHandlers } from '../auth/AuthContextProvider'
+import { useAuthHandlers } from '@auth/AuthContextProvider'
 
 
 interface Credentials {

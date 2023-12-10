@@ -1,5 +1,6 @@
 import { Button } from '@components/styledComponents/Button'
 import error404 from '/images/error404.webp'
+import { Link } from 'react-router-dom'
 
 export function PageNotFound(){
     return(
@@ -10,9 +11,9 @@ export function PageNotFound(){
                 <p>Uish... Esta página no existe en Wallapop, lo que sí que existen son miles</p>
                 <p>de oportunidades esperándote.</p>
             </div>
-            <a className='m-5' href="/">
+            <Link className='m-5' to="/">
                 <Button $variant='fullFill'>Ver productos</Button>
-            </a>
+            </Link>
         </div>
     )
 }

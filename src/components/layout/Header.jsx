@@ -3,29 +3,27 @@ import { Button } from "@components/styledComponents/Button.tsx";
 import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
 import { Link } from "react-router-dom";
+import { AuthButton } from '@auth/AuthButton'
 
 const RenderNavLinks = (toggleMenu) => {
-  const navLinks = [
-    //{ title: "Adverts", link: "/adverts", },
-    { title: "Inicia sesión ", link: "/login", variant: "default" },
-    { title: "Subir Producto ", link: "/adverts/new", variant: "fullFill" },
-  ];
+
 
   return (
     <>
-      {navLinks.map((linkItem) => (
-        <li key={linkItem.link} className="mb-1">
+        <li className="mb-1 flex justify-center md:px-1 py-2">
+          <AuthButton toggleMenu={toggleMenu}/>
+        </li>
+        <li className="mb-1 flex justify-center md:px-1 py-2">
           <Link
-            className="flex justify-center md:px-1 py-2 font-bold hover:text-[#ffa700]"
-            to={linkItem.link}
+            to='/adverts/new'
             onClick={() => {toggleMenu(false)}}
           >
-            <Button className="text-base" $variant={linkItem.variant}>
-              {linkItem.title}
+            <Button className="text-base" $variant='fullFill'>
+              Subir Producto
             </Button>
           </Link>
         </li>
-      ))}
+      
     </>
   );
 };
