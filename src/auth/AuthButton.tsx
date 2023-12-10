@@ -10,15 +10,19 @@ export function AuthButton({toggleMenu}) {
 
   const { onLogout } = useAuthHandlers();
 
-
+  const handleLogout = () => {
+    toggleMenu(false)
+    onLogout()
+  }
+  
   return (
     <>
 
       {IsLogged
-        ? <Button onClick={()=>{onLogout()}} $variant='default'>Cerrar sesión</Button>
+        ? <Button onClick={()=>{handleLogout()}} $variant='default'>Cerrar sesión</Button>
         : <Link
             to='/login'
-            onClick={() => { toggleMenu(false) }}
+            onClick={() => {toggleMenu(false) }}
           >
             <Button $variant='default'>Inicia sesión</Button>
           </Link>

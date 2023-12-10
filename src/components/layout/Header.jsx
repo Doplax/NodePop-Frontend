@@ -5,7 +5,7 @@ import textLogo from "/images/textLogo.png";
 import { Link } from "react-router-dom";
 import { AuthButton } from '@auth/AuthButton'
 
-const RenderNavLinks = (toggleMenu) => {
+const RenderNavLinks = ({toggleMenu}) => {
 
 
   return (
@@ -16,9 +16,9 @@ const RenderNavLinks = (toggleMenu) => {
         <li className="mb-1 flex justify-center md:px-1 py-2">
           <Link
             to='/adverts/new'
-            onClick={() => {toggleMenu(false)}}
+            
           >
-            <Button className="text-base" $variant='fullFill'>
+            <Button onClick={() => {toggleMenu(false)}} className="text-base" $variant='fullFill'>
               Subir Producto
             </Button>
           </Link>
@@ -30,9 +30,9 @@ const RenderNavLinks = (toggleMenu) => {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  console.log(isMenuOpen);
+  const toggleMenu = (value) => {
+    setIsMenuOpen(value);
   };
 
   return (
@@ -61,7 +61,7 @@ export const Header = () => {
         </nav>
 
         {/* Toggle Button */}
-        <button className="md:hidden" onClick={toggleMenu}>
+        <button className="md:hidden" onClick={()=>{toggleMenu(!isMenuOpen)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 cursor-pointer block"
