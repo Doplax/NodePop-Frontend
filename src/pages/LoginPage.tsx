@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 import { login } from '../services/authService'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 interface Credentials {
@@ -45,9 +46,9 @@ export const LoginPage = () => {
     return (
         <div className='w-screen h-screen items-center  flex justify-center bg-[#29363dcc]'>
             <form className='bg-white w-[400px] h-max  p-8  rounded-lg ' onSubmit={handleSubmit} >
-                <div className='flex justify-between  '>
-                    <a href="/"><BackArrow/></a>
-                    <a href="/"><Cross/></a>
+            <div className='flex justify-between'>
+                    <Link to="/"><BackArrow/></Link>
+                    <Link to="/"><Cross/></Link>
                 </div>
 
                 <div className='my-3'>

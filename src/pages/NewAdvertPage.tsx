@@ -5,6 +5,7 @@ import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 import { createAdvert } from '../services/advertsService'
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 export const NewAdvertPage = () => {
@@ -51,8 +52,8 @@ export const NewAdvertPage = () => {
             <form className='shadow-2xl border w-[400px] p-8  rounded-lg ' onSubmit={handleSubmit} >
                 {/* Icons */}
                 <div className='flex justify-between'>
-                    <a href="/"><BackArrow/></a>
-                    <a href="/"><Cross/></a>
+                    <Link to="/"><BackArrow/></Link>
+                    <Link to="/"><Cross/></Link>
                 </div>
 
                 {/* Title */}

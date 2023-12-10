@@ -4,7 +4,7 @@ import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
 import { Link } from "react-router-dom";
 
-const RenderNavLinks = () => {
+const RenderNavLinks = (toggleMenu) => {
   const navLinks = [
     //{ title: "Adverts", link: "/adverts", },
     { title: "Inicia sesión ", link: "/login", variant: "default" },
@@ -18,6 +18,7 @@ const RenderNavLinks = () => {
           <Link
             className="flex justify-center md:px-1 py-2 font-bold hover:text-[#ffa700]"
             to={linkItem.link}
+            onClick={() => {toggleMenu(false)}}
           >
             <Button className="text-base" $variant={linkItem.variant}>
               {linkItem.title}
@@ -57,7 +58,7 @@ export const Header = () => {
         {/* Desktop Menu */}
         <nav className="hidden md:flex md:items-center">
           <ul className={`flex`}>
-            <RenderNavLinks />
+            <RenderNavLinks toggleMenu={toggleMenu} />
           </ul>
         </nav>
 
@@ -87,7 +88,7 @@ export const Header = () => {
         }`}
       >
         <ul className={`p-2 ${isMenuOpen ? "flex flex-col" : "hidden"}`}>
-          <RenderNavLinks />
+          <RenderNavLinks toggleMenu={toggleMenu} />
         </ul>
       </nav>
     </header>
