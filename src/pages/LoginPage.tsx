@@ -18,8 +18,12 @@ export const LoginPage = () => {
         password: 'pedro',
     })
 
+    const [rememberPassword, setRememberPassword] = useState(false)
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(rememberPassword);
+        login(credentials,rememberPassword)
     }
 
     const handleCredentials = (event) => {
@@ -27,7 +31,6 @@ export const LoginPage = () => {
             ...currentCredentials,
             [event.target.name]: event.target.value, // Es necesaria la propiedad name en el input de abajo para que esto funcione
         }))
-        console.table(event.target.name);
     }
 
 
@@ -47,16 +50,16 @@ export const LoginPage = () => {
                 <div className='flex flex-col'>
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
                     <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="text" />
-                    <div className='m-5'>
+                    <label className='m-5' onChange={(event) => {setRememberPassword(event.target.checked)}}>
                         <input type="checkbox" />
                         <span> Recordar contraseña</span>
-                    </div>
+                    </label>
                 </div>
 
                
 
                 <div className='w-full mt-10 flex items-end justify-center'>
-                    <Button $variant='fullFill' onClick={() => login(credentials)} type='submit'>Iniciar sesión</Button>
+                    <Button $variant='fullFill'  type='submit'>Iniciar sesión</Button>
                 </div>
             </form>
         </div>
