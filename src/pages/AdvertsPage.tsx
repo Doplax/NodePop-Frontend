@@ -1,23 +1,28 @@
 import { getAdverts } from "@services/advertsService"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export function AdvertsPage() {
     const [advertsList, setAdvertsList] = useState([])
+    const [fetchedAdverts, setFetchedAdverts] = useState(false)
 
+    console.log('AdvertsPage',advertsList);
     useEffect(() => {
-        (async () => {
+        const fetchData = async () => {
             try {
-                const respone = await getAdverts()
-                setAdvertsList(respone)
+                const response = await getAdverts()
+                setAdvertsList(response.data)
+                setFetchedAdverts(true)
             } catch (err) {
                 console.log('Error: ', err);
             }
-        })()
-    }, [])
+        }
+        fetchData()
+    }, [fetchedAdverts])
 
     return (
         <div className="flex flex-wrap justify-center">
-            {(advertsList.length > 0)
+            {fetchedAdverts
                 ?
                 <RenderAdvertList advertsList={advertsList} />
                 :
@@ -32,7 +37,7 @@ export function AdvertsPage() {
     return (
         <>
             {advertsList.map((advert, key) => (
-                <a href={`/adverts/${advert.id}`} key={key} className="m-3">
+                <Link to={`/adverts/${advert.id}`} key={key} className="m-3">
                     <div className="max-w-sm rounded overflow-hidden">
                         <img className="w-full rounded-lg" src="https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true" alt={`${advert.name}`} />
                         <div className="flex justify-between w-full mt-1">
@@ -44,7 +49,7 @@ export function AdvertsPage() {
                             <span> {advert.sale ? "En Venta" : "NO en venta"}</span>
                         </div>
                     </div>
-                </a>
+                </Link>
             ))}
         </>
     )

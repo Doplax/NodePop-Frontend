@@ -14,31 +14,31 @@ export function AdvertPage() {
         image: 'https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true'
     });
 
-    const [redirectToNotFound, setRedirectToNotFound] = useState(false);
 
 
     useEffect(() => {
         const fetchAdvert = async () => {
             try {
+                debugger
                 const { name, sale, price, tags } = await getSingleAdvert(advertId);
                 setAdvertData({ ...advertData, name, sale, price, tags });
             } catch (error) {
                 console.error('Error', error);
-                setRedirectToNotFound(true);
+                
             }
         };
     
         fetchAdvert();
-    }, [advertId]);
+    }, []);
     
 
 
     return (
         <>
-            {redirectToNotFound ? <Navigate to="/404" /> : null}
-            {redirectToNotFound  
-                ? <Navigate to="/404"/>
+            {advertData.name.length === 0  
+                ? <h1>socorro</h1>
                 : <RenderAdvert advertData={advertData} />
+                //<Navigate to="/404"/>
             }
         </>
     )

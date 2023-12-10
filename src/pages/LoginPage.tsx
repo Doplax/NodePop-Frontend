@@ -15,7 +15,7 @@ interface Credentials {
 
 export const LoginPage = () => {
     const navigate = useNavigate()
-
+    console.log("login");
     const [credentials, setCredentials] = useState<Credentials>({
         email: 'pedro@gmail.com',
         password: 'pedro',
@@ -23,10 +23,14 @@ export const LoginPage = () => {
 
     const [rememberPassword, setRememberPassword] = useState(false)
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+       try{
         event.preventDefault();
-        login(credentials,rememberPassword)
+        await login(credentials,rememberPassword)
         navigate('/')
+       } catch (error) {
+        console.log(error);
+       }
     }
 
     const handleCredentials = (event) => {

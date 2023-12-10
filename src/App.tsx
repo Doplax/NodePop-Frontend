@@ -14,7 +14,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-
+    <Route>
       <Route
         path="/adverts"
         element={
@@ -46,7 +46,7 @@ function App() {
           <PageNotFound/>
         </Layout>
       } />
-
+    </Route>
       <Route path="/" element={<Navigate to="/adverts" />} />
       <Route path="*" element={<Navigate to="/404" />} />
     </Routes>

@@ -11,7 +11,7 @@ const accessToken = storage.get('auth');
 if (accessToken) {
   setAuthorizationHeader(accessToken);
 }
-
+console.log("Main");
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
