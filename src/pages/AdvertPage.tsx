@@ -19,8 +19,9 @@ export function AdvertPage() {
     useEffect(() => {
         const fetchAdvert = async () => {
             try {
-                debugger
-                const { name, sale, price, tags } = await getSingleAdvert(advertId);
+                
+                const response = await getSingleAdvert(advertId);
+                const { name, sale, price, tags } = response.data
                 setAdvertData({ ...advertData, name, sale, price, tags });
             } catch (error) {
                 console.error('Error', error);

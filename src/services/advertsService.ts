@@ -6,6 +6,7 @@ const advertsBaseUrl = '/api/v1/adverts';
 export const getSingleAdvert = (advertId) => {
     const url = advertsBaseUrl;
     console.log('Token', client.defaults.headers.common['Authorization']);
+    
     return client.get(`${url}/${advertId}`);
 }
 
