@@ -1,12 +1,16 @@
 import { getAdverts } from "@services/advertsService"
-import { useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import { useIsLogged } from '../auth/AuthContextProvider'
 
 export function AdvertsPage() {
+
+    const context = useIsLogged()
+    console.log(context);
+
     const [advertsList, setAdvertsList] = useState([])
     const [fetchedAdverts, setFetchedAdverts] = useState(false)
 
-    console.log('AdvertsPage',advertsList);
     useEffect(() => {
         const fetchData = async () => {
             try {
