@@ -56,7 +56,7 @@ export const LoginPage = () => {
 
                 <div className='flex flex-col'>
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
-                    <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="text" />
+                    <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="password" />
                     <label className='m-5' onChange={(event) => {setRememberPassword(event.target.checked)}}>
                         <input type="checkbox" />
                         <span> Recordar contraseña</span>
