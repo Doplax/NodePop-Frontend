@@ -22,8 +22,9 @@ export const NewAdvertPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            
             const response = await createAdvert(advertData)
-            const advertId = response.id
+            const advertId = response.data.id
             console.log(advertId);
             navigate(`../${advertId}`, { relative: 'path' });
 

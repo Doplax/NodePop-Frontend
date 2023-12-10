@@ -14,7 +14,7 @@
 ## Funcionalidad de cada Página-Componente
 ### LoginPage
 - [ x ] Formulario para email y password
-- [ ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
+- [ x ] Checkbox “Recordar contraseña” para guardar sesión en localStorage
 
 ### AdvertsPage
 - [ x ] Listado de anuncios (nombre, precio, tipo, tags)
