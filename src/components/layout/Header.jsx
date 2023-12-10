@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@components/styledComponents/Button.tsx";
 import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
+import { Link } from "react-router-dom";
 
 const RenderNavLinks = () => {
   const navLinks = [
@@ -14,14 +15,14 @@ const RenderNavLinks = () => {
     <>
       {navLinks.map((linkItem) => (
         <li key={linkItem.link} className="mb-1">
-          <a
+          <Link
             className="flex justify-center md:px-1 py-2 font-bold hover:text-[#ffa700]"
-            href={linkItem.link}
+            to={linkItem.link}
           >
             <Button className="text-base" $variant={linkItem.variant}>
               {linkItem.title}
             </Button>
-          </a>
+          </Link>
         </li>
       ))}
     </>
@@ -39,10 +40,10 @@ export const Header = () => {
     <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-10">
       <div className="flex flex-row w-full justify-between">
         {/* Logo */}
-        <a className="flex justify-center items-center" href="/">
+        <Link className="flex justify-center items-center" to="/">
           <img className="h-10 m-2" src={logo} alt="logo" />
           <img className="hidden md:flex" src={textLogo} alt="text logo" />
-        </a>
+        </Link>
 
         {/* Search Bar */}
         <div className="flex items-center justify-center flex-1 mx-5">
