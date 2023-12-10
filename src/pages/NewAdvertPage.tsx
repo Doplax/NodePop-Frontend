@@ -67,7 +67,7 @@ export const NewAdvertPage = () => {
                     <Input required value={advertData.price} name='price' onChange={handleCredentials} placeholder='Contraseña' type="number" />
                     <Input required value={advertData.tags} name='tags' onChange={handleCredentials} placeholder='Contraseña' type="text" />
                     <label className='flex justify-center'>
-                        <input required checked={advertData.sale} name='sale' onChange={handleCredentials} type="checkbox" />
+                        <input checked={advertData.sale} name='sale' onChange={handleCredentials} type="checkbox" />
                         <span>*Maque la casilla si está en venta  </span>
                     </label>
                 </div>

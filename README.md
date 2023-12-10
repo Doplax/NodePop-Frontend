@@ -38,7 +38,7 @@
 
 ## Componentes Adicionales
 - [ ] Componente de Logout visible cuando el usuario está logueado
-- [ ] Enlaces de navegación para `/adverts` y `/adverts/new`
+- [ x ] Enlaces de navegación para `/adverts` y `/adverts/new`
 
 ## Notas Adicionales
 - Considerar la reutilización de componentes (por ejemplo, para confirmaciones)
