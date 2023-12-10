@@ -4,11 +4,7 @@ export const client = axios.create({
  baseURL: import.meta.env.VITE_REACT_APP_API_BASE_URL,
 });
 
-axios.interceptors.request.use(request => {
-  console.log('Starting Request', request);
-  return request;
-});
-
+console.log('Authorization' ,client.defaults.headers.common['Authorization']);
 
 client.interceptors.response.use(response => response.data);
 

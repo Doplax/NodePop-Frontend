@@ -5,6 +5,7 @@ import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 
 import { login } from '../services/authService'
+import { useNavigate } from 'react-router-dom';
 
 
 interface Credentials {
@@ -13,6 +14,8 @@ interface Credentials {
 }
 
 export const LoginPage = () => {
+    const navigate = useNavigate()
+
     const [credentials, setCredentials] = useState<Credentials>({
         email: 'pedro@gmail.com',
         password: 'pedro',
@@ -22,8 +25,8 @@ export const LoginPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(rememberPassword);
         login(credentials,rememberPassword)
+        navigate('/')
     }
 
     const handleCredentials = (event) => {
