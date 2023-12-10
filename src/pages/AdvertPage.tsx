@@ -138,13 +138,14 @@ function RenderAdvert({advertData}) {
                             <p className="leading-relaxed">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, dolores! Non exercitationem iure accusantium doloremque quae laborum aspernatur illo qui perferendis, voluptatum ullam voluptate obcaecati minus libero nesciunt neque consectetur?
                             </p>
-                            <div className="flex sm:my-20 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
-                            <div className="flex">
-                                <span className="title-font font-medium text-2xl text-gray-900">{advertData.price.toFixed(2)} $
+                            <div className="flex justify-end">
+                                <span className="title-font font-medium text-2xl text-gray-900">
+                                    {advertData.price.toFixed(2)} $
                                 </span>
                             </div>
+                            <div className="flex sm:my-10 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
                             <div>
-                                <Button onClick={() => {handleDeleteAdvert()}} className="w" $variant="danger"> Buy </Button>
+                                <Button $size='full' onClick={() => {handleDeleteAdvert()}} className="w" $variant="danger"> Buy </Button>
                             </div>
                         </div>
                     </div>

@@ -72,7 +72,7 @@ export const LoginPage = () => {
                
 
                 <div className='w-full mt-10 flex items-end justify-center'>
-                    <Button $variant='fullFill'  type='submit'>Iniciar sesión</Button>
+                    <Button $size='full' $variant='fullFill'  type='submit'>Iniciar sesión</Button>
                 </div>
             </form>
         </div>
