@@ -3,17 +3,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function AdvertsPage() {
-    const [searchBarValue, setSearchBarValue] = useState('');
     const [advertsList, setAdvertsList] = useState([]);
-
-    const searchBar = document.querySelector('#searchBar') as HTMLInput;
-
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await getAdverts();
-                setSearchBarValue(searchBar?.value)
                 setAdvertsList(response.data);
             } catch (err) {
                 console.log('Error: ', err);
@@ -24,16 +19,14 @@ export function AdvertsPage() {
 
 
 
-    const filteredAdverts = advertsList.filter(advert =>
-        advert.name.toLowerCase().includes(searchBarValue.toLowerCase())
-    );
+  
 
     return (
         <div>
             {/* Asegúrate de que el input con id 'searchBar' exista en tu HTML */}
             <div className="flex flex-wrap justify-center">
-                {filteredAdverts.length > 0
-                    ? <RenderAdvertList advertsList={filteredAdverts} />
+                {advertsList.length > 0
+                    ? <RenderAdvertList advertsList={advertsList} />
                     : <AdvertsNotFound />
                 }
             </div>
