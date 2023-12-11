@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import { getSingleAdvert } from "@services/advertsService";
-import { Button } from '@components/styledComponents/Button'
 
+import { getSingleAdvert } from "@services/advertsService";
 import { deleteAdvert } from '@services/advertsService'
+import { Button } from '@components/styledComponents/Button'
+import { Spinner } from '@components/Spinner/Spinner'
 
 
 export function AdvertPage() {
@@ -41,7 +42,7 @@ export function AdvertPage() {
     return (
         <>
             {advertData.name.length === 0
-                ? <h1>Cargando...</h1>
+                ? <Spinner/>
                 : <RenderAdvert advertData={advertData} />
                 //<Navigate to="/404"/>
             }

@@ -26,7 +26,9 @@ export const AuthContextProvider = ({ initiallyLogged, children }) => {
 
   return (
     <AuthContextHandlers.Provider value={authHandlers}>
-      <AuthContext.Provider value={isLogged}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={isLogged}>
+        {children}
+      </AuthContext.Provider>
     </AuthContextHandlers.Provider>
   );
 };

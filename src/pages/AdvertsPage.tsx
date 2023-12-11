@@ -1,15 +1,19 @@
 import { getAdverts } from "@services/advertsService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Spinner } from '@components/Spinner/Spinner'
+
 
 export function AdvertsPage() {
     const [advertsList, setAdvertsList] = useState([]);
-
+    const [isFetching, setIsFetching] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsFetching(false)
                 const response = await getAdverts();
                 setAdvertsList(response.data);
+                setIsFetching(true)
             } catch (err) {
                 console.log('Error: ', err);
             }
@@ -25,10 +29,11 @@ export function AdvertsPage() {
         <div>
             {/* Asegúrate de que el input con id 'searchBar' exista en tu HTML */}
             <div className="flex flex-wrap justify-center">
-                {advertsList.length > 0
+                {isFetching
                     ? <RenderAdvertList advertsList={advertsList} />
-                    : <AdvertsNotFound />
+                    : <Spinner />
                 }
+
             </div>
         </div>
     );
@@ -56,10 +61,3 @@ function RenderAdvertList({ advertsList }) {
     )
 }
 
-function AdvertsNotFound() {
-    return (
-        <div>
-            No hay anuncios para mostrar :c
-        </div>
-    )
-}
