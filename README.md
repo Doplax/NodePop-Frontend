@@ -28,7 +28,7 @@
 - [ x ] Detalle de anuncio según ID
 - [ x ] Mostrar foto del anuncio o placeholder
 - [ x ] Redireccionar a NotFoundPage si el anuncio no existe
-- [ ] Botón para borrar anuncio con confirmación
+- [ x ] Botón para borrar anuncio con confirmación
 
 ### NewAdvertPage
 - [ x ] Formulario para crear anuncio (nombre, tipo, tags, precio, foto)
@@ -37,7 +37,7 @@
 - [ x ] Redireccionar a la página del anuncio tras creación
 
 ## Componentes Adicionales
-- [ ] Componente de Logout visible cuando el usuario está logueado
+- [ x ] Componente de Logout visible cuando el usuario está logueado
 - [ x ] Enlaces de navegación para `/adverts` y `/adverts/new`
 
 ## Notas Adicionales

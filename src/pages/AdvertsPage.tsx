@@ -1,41 +1,47 @@
-import { getAdverts } from "@services/advertsService"
-import {  useEffect, useState } from "react"
+import { getAdverts } from "@services/advertsService";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function AdvertsPage() {
+    const [searchBarValue, setSearchBarValue] = useState('');
+    const [advertsList, setAdvertsList] = useState([]);
 
+    const searchBar = document.querySelector('#searchBar') as HTMLInput;
 
-
-    const [advertsList, setAdvertsList] = useState([])
-    const [fetchedAdverts, setFetchedAdverts] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getAdverts()
-                setAdvertsList(response.data)
-                setFetchedAdverts(true)
+                const response = await getAdverts();
+                setSearchBarValue(searchBar?.value)
+                setAdvertsList(response.data);
             } catch (err) {
                 console.log('Error: ', err);
             }
-        }
-        fetchData()
-    }, [fetchedAdverts])
+        };
+        fetchData();
+    }, []);
+
+
+
+    const filteredAdverts = advertsList.filter(advert =>
+        advert.name.toLowerCase().includes(searchBarValue.toLowerCase())
+    );
 
     return (
-        <div className="flex flex-wrap justify-center">
-            {fetchedAdverts
-                ?
-                <RenderAdvertList advertsList={advertsList} />
-                :
-                <AdvertsNotFound/>
-            }
+        <div>
+            {/* Asegúrate de que el input con id 'searchBar' exista en tu HTML */}
+            <div className="flex flex-wrap justify-center">
+                {filteredAdverts.length > 0
+                    ? <RenderAdvertList advertsList={filteredAdverts} />
+                    : <AdvertsNotFound />
+                }
+            </div>
         </div>
-    )
+    );
 }
 
-
-    function RenderAdvertList({advertsList}) {
+function RenderAdvertList({ advertsList }) {
     return (
         <>
             {advertsList.map((advert, key) => (
@@ -44,7 +50,7 @@ export function AdvertsPage() {
                         <img className="w-full rounded-lg" src="https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true" alt={`${advert.name}`} />
                         <div className="flex justify-between w-full mt-1">
                             <span className="text-gray-700 font-bold text-xl">{advert.price} $</span>
-                            <span className="bg-[--primary-color] font-semibold text-white rounded-md text-sm py-1 px-2 hover:bg-[--secondary-color]">{advert.tags}</span>
+                            <span className="bg-[--primary-color] font-bold text-white rounded-md text-xs py-1 px-2 hover:bg-[--secondary-color]">{advert.tags}</span>
                         </div>
                         <div className="flex justify-between w-full">
                             <span>{advert.name}</span>

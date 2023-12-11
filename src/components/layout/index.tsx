@@ -1,11 +1,14 @@
 import Footer from "./Footer";
 import { Header } from "./Header";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useIsLogged } from '@auth/AuthContextProvider'
 
 
 
-export default function Index({ children }) {
+export default function Index() {
+  
+
+
   const IsLogged = useIsLogged()
   return (
     <>
@@ -13,8 +16,8 @@ export default function Index({ children }) {
         ?
           <div className="flex flex-col">
             <Header />
-              {children}
-            <Footer></Footer>
+              <Outlet/>
+            <Footer/>
           </div>
         :
           <Navigate to='/login'/>

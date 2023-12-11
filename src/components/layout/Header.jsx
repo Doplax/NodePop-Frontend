@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "@components/styledComponents/Button.tsx";
+import { HambButton } from '@components/svg/HambButton'
 import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthButton } from '@auth/AuthButton'
 
 const RenderNavLinks = ({toggleMenu}) => {
@@ -30,11 +31,16 @@ const RenderNavLinks = ({toggleMenu}) => {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(isMenuOpen);
+  const navigate = useNavigate()
   const toggleMenu = (value) => {
     setIsMenuOpen(value);
   };
 
+  const handleSearch = () => {
+    setTimeout(() => {
+      navigate('/')
+    }, 3000);
+  }
   return (
     <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-10">
       <div className="flex flex-row w-full justify-between">
@@ -47,9 +53,11 @@ export const Header = () => {
         {/* Search Bar */}
         <div className="flex items-center justify-center flex-1 mx-5">
           <input
+          id="searchBar"
             className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:border-stone-700 focus:outline-none"
             type="search"
             placeholder="Buscar en Todas las categorías"
+            onChange={()=>{handleSearch()}}
           />
         </div>
 
@@ -62,20 +70,7 @@ export const Header = () => {
 
         {/* Toggle Button */}
         <button className="md:hidden" onClick={()=>{toggleMenu(!isMenuOpen)}}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 cursor-pointer block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          <HambButton/>
         </button>
       </div>
 

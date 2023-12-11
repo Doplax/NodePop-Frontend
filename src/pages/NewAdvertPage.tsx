@@ -6,17 +6,18 @@ import { useState } from 'react';
 import { createAdvert } from '../services/advertsService'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { Select } from '@components/styledComponents/Select';
 
 
 export const NewAdvertPage = () => {
     const navigate = useNavigate();
-    
+
 
     const [advertData, setAdvertData] = useState({
         name: 'product',
         sale: true,
         price: 100,
-        tags: 'work',
+        tags: '',
 
     })
 
@@ -42,7 +43,7 @@ export const NewAdvertPage = () => {
         console.table(event.target.name);
     }
 
-    
+
 
 
 
@@ -51,8 +52,8 @@ export const NewAdvertPage = () => {
             <form className='shadow-2xl border w-[400px] p-8  rounded-lg ' onSubmit={handleSubmit} >
                 {/* Icons */}
                 <div className='flex justify-between'>
-                    <Link to="/"><BackArrow/></Link>
-                    <Link to="/"><Cross/></Link>
+                    <Link to="/"><BackArrow /></Link>
+                    <Link to="/"><Cross /></Link>
                 </div>
 
                 {/* Title */}
@@ -62,9 +63,15 @@ export const NewAdvertPage = () => {
 
                 {/* Inptus */}
                 <div className='flex flex-col'>
-                    <Input required value={advertData.name} name='name' onChange={handleCredentials} placeholder='Nombre del product' type="text" />
-                    <Input required value={advertData.price} name='price' onChange={handleCredentials} placeholder='Contraseña' type="number" />
-                    <Input required value={advertData.tags} name='tags' onChange={handleCredentials} placeholder='Contraseña' type="text" />
+                    <Input required value={advertData.name} name='name' onChange={handleCredentials} placeholder='Nombre del producto' type="text" />
+                    <Input required value={advertData.price} name='price' onChange={handleCredentials} placeholder='Precio' type="number" />
+                    <Select required value={advertData.tags} name='tags' onChange={handleCredentials} className="tu-clase-de-estilo-para-select">
+                        <option value="">Selecciona un tag</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="motor">Motor</option>
+                        <option value="work">Work</option>
+                    </Select>                    
                     <label className='flex justify-center'>
                         <input checked={advertData.sale} name='sale' onChange={handleCredentials} type="checkbox" />
                         <span>*Maque la casilla si está en venta  </span>
@@ -74,7 +81,7 @@ export const NewAdvertPage = () => {
 
 
                 <div className='w-full my-14 flex items-end justify-center'>
-                    <Button $variant='fullFill'  type='submit'>Crear Producto</Button>
+                    <Button $variant='fullFill' type='submit'>Crear Producto</Button>
                 </div>
             </form>
         </div>
