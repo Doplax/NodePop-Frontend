@@ -2,24 +2,50 @@ import { getAdverts } from "@services/advertsService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spinner } from '@components/Spinner/Spinner'
-
+//import { useAuthHandlers } from '../Filters/FiltersContext'
+import { useFilterValues } from '../Filters/FiltersContext'
+import { LabelsBar } from '../Filters/LabelsBar'
 
 export function AdvertsPage() {
     const [advertsList, setAdvertsList] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
+    
+    const { searchValue, selectedTag} = useFilterValues();
+
+    const filterAdverts = (unOrderAdvertsList) => {
+        let advertslist = unOrderAdvertsList
+        if (searchValue !== ''){
+            advertslist = advertslist.filter(advert =>
+                advert.name.toLowerCase().includes(searchValue)
+            );
+        } 
+        
+        //TODO: Acaba Filtro
+        if (selectedTag !== ''){
+            advertslist = advertslist.filter(objeto =>
+                objeto.tags.some(tag => 
+                    tag.toLowerCase().includes(selectedTag)
+                )
+        )}
+        
+        setAdvertsList(advertslist)
+    }
+
+    //TODO: sacar filter fuera del fetch para no sobrecargar el servidor 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setIsFetching(false)
-                const response = await getAdverts();
-                setAdvertsList(response.data);
                 setIsFetching(true)
+                const response = await getAdverts();
+                filterAdverts(response.data);
+                setIsFetching(false)
             } catch (err) {
                 console.log('Error: ', err);
             }
         };
         fetchData();
-    }, []);
+        console.log(searchValue);
+    }, [searchValue,selectedTag]);
 
 
 
@@ -27,11 +53,11 @@ export function AdvertsPage() {
 
     return (
         <div>
-            {/* Asegúrate de que el input con id 'searchBar' exista en tu HTML */}
+                <LabelsBar/>
             <div className="flex flex-wrap justify-center">
                 {isFetching
-                    ? <RenderAdvertList advertsList={advertsList} />
-                    : <Spinner />
+                    ? <Spinner />
+                    : <RenderAdvertList advertsList={advertsList} />
                 }
 
             </div>

@@ -3,8 +3,9 @@ import { Button } from "@components/styledComponents/Button.tsx";
 import { HambButton } from '@components/svg/HambButton'
 import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthButton } from '@auth/AuthButton'
+import { SearchBar } from '../../Filters/SearchBar'
 
 const RenderNavLinks = ({toggleMenu}) => {
 
@@ -31,18 +32,13 @@ const RenderNavLinks = ({toggleMenu}) => {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate()
   const toggleMenu = (value) => {
     setIsMenuOpen(value);
   };
+  
 
-  const handleSearch = () => {
-    setTimeout(() => {
-      navigate('/')
-    }, 3000);
-  }
   return (
-    <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-10">
+    <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-1">
       <div className="flex flex-row w-full justify-between">
         {/* Logo */}
         <Link className="flex justify-center items-center" to="/">
@@ -51,15 +47,7 @@ export const Header = () => {
         </Link>
 
         {/* Search Bar */}
-        <div className="flex items-center justify-center flex-1 mx-5">
-          <input
-          id="searchBar"
-            className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:border-stone-700 focus:outline-none"
-            type="search"
-            placeholder="Buscar en Todas las categorías"
-            onChange={()=>{handleSearch()}}
-          />
-        </div>
+        <SearchBar/>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex md:items-center">
