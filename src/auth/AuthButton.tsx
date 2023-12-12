@@ -1,6 +1,7 @@
 import { useIsLogged } from '@auth/AuthContextProvider'
 import { Button } from '@components/styledComponents/Button'
 import { Link } from "react-router-dom";
+import { storage } from  '@utils/storage' 
 
 import { useAuthHandlers } from '@auth/AuthContextProvider'
 
@@ -13,6 +14,8 @@ export function AuthButton({toggleMenu}) {
   const handleLogout = () => {
     toggleMenu(false)
     onLogout()
+    storage.remove('auth')
+
   }
   
   return (
