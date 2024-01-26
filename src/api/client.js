@@ -1,16 +1,27 @@
 import axios from 'axios';
 
+/**
+ * Creates an instance of Axios with a base configuration.
+ * `baseURL` is set from an environment variable 
+ */
 export const client = axios.create({
- baseURL: import.meta.env.VITE_REACT_APP_API_BASE_URL,
+    baseURL: import.meta.env.VITE_REACT_APP_API_BASE_URL,
 });
 
-
-
+/**
+ * Sets the authorization header for all outgoing HTTP requests.
+ * Useful to ensure that requests include the necessary JWT token for authentication.
+ *
+ * @param {string} token - JWT token to be included in the authorization header.
+ */
 export const setAuthorizationHeader = token => {
-	(client.defaults.headers.common['Authorization'] = `Bearer ${token}`)
+    client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-export const removeAuthorizarionHeader = () => {
+/**
+ * Removes the authorization header from HTTP requests.
+ * Useful for when the user logs out and no longer needs to send the JWT token.
+ */
+export const removeAuthorizationHeader = () => {
     delete client.defaults.headers.common['Authorization'];
 }
-

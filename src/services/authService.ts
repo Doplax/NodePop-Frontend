@@ -1,4 +1,4 @@
-import  {client, removeAuthorizarionHeader, setAuthorizationHeader } from '../api/client';
+import  {client, removeAuthorizationHeader, setAuthorizationHeader } from '../api/client';
 import { storage } from '@utils/storage';
 
 
@@ -19,7 +19,7 @@ export const login = async (credentials, rememberPassword) => {
 
 export const logout = async () => {
     return Promise.resolve().then(()=>{
-        removeAuthorizarionHeader();
+        removeAuthorizationHeader();
         storage.remove('auth');
     })
 }
