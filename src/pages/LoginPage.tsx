@@ -46,7 +46,9 @@ export const LoginPage = () => {
         }))
     }
 
-
+    const handleChange = () => {
+        (event) => {setRememberPassword(event.target.checked)}
+    }
 
     return (
         <div className='w-screen h-screen items-center  flex justify-center bg-[#29363dcc]'>
@@ -63,7 +65,7 @@ export const LoginPage = () => {
                 <div className='flex flex-col'>
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
                     <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="password" />
-                    <label className='m-5' onChange={(event) => {setRememberPassword(event.target.checked)}}>
+                    <label className='m-5' onChange={handleChange}>
                         <input type="checkbox" />
                         <span> Recordar contraseña</span>
                     </label>
