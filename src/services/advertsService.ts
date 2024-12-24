@@ -1,26 +1,19 @@
-import {client} from '../api/client'
+import { client } from '../api/client';
 
 const advertsBaseUrl = '/api/products';
 
-
 export const getSingleAdvert = (advertId) => {
-    const url = advertsBaseUrl;
-    
-    return client.get(`${url}/${advertId}`);
-}
+    return client.get(`${advertsBaseUrl}/${advertId}`); 
+};
 
 export const getAdverts = () => {
-    const url = advertsBaseUrl;
-    return client.get(url);
-}
+    return client.get(advertsBaseUrl);
+};
 
 export const createAdvert = (advert) => {
-    const url = advertsBaseUrl;
-    return client.post(url, advert);
-}
-
+    return client.post(advertsBaseUrl, advert);
+};
 
 export const deleteAdvert = (advertId) => {
-    const url = advertsBaseUrl;
-    return client.delete(`${url}/${advertId}`);
-}
+    return client.delete(`${advertsBaseUrl}/${advertId}`);
+};
