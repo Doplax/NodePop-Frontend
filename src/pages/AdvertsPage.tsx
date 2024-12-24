@@ -1,53 +1,50 @@
 import { getAdverts } from "@services/advertsService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Spinner } from '@components/Spinner/Spinner'
+import { Spinner } from '@components/Spinner/Spinner';
 //import { useAuthHandlers } from '../Filters/FiltersContext'
-import { useFilterValues } from '../Filters/FiltersContext'
-import { LabelsBar } from '../Filters/LabelsBar'
+import { useFilterValues } from '../Filters/FiltersContext';
+import { LabelsBar } from '../Filters/LabelsBar';
 
 export function AdvertsPage() {
     const [advertsList, setAdvertsList] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     
-    const { searchValue, selectedTag} = useFilterValues();
+    const { searchValue, selectedTag } = useFilterValues();
 
     const filterAdverts = (unOrderAdvertsList) => {
-        let advertslist = unOrderAdvertsList
-        debugger
-        console.table(advertsList);
+        let filteredAdverts = unOrderAdvertsList; // Cambiado el nombre para evitar colisiones
         
-        if (searchValue !== ''){
-            advertslist = advertslist.filter(advert =>
+        if (searchValue !== '') {
+            filteredAdverts = filteredAdverts.filter(advert =>
                 advert.name.toLowerCase().includes(searchValue)
             );
         } 
         
-        //TODO: Acaba Filtro
-        if (selectedTag !== ''){
-            advertslist = advertslist.filter(objeto =>
+        if (selectedTag !== '') {
+            filteredAdverts = filteredAdverts.filter(objeto =>
                 objeto.tags.some(tag => 
                     tag.toLowerCase().includes(selectedTag)
                 )
-        )}
+            );
+        }
         
-        setAdvertsList(advertslist)
-    }
+        setAdvertsList(filteredAdverts);
+    };
 
-    //TODO: sacar filter fuera del fetch para no sobrecargar el servidor 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setIsFetching(true)
+                setIsFetching(true);
                 const response = await getAdverts();
                 filterAdverts(response.data.data);
-                setIsFetching(false)
+                setIsFetching(false);
             } catch (err) {
                 console.log('Error: ', err);
             }
         };
         fetchData();
-    }, [searchValue,selectedTag]);
+    }, [searchValue, selectedTag]);
 
     return (
         <div>
@@ -68,7 +65,7 @@ function RenderAdvertList({ advertsList }) {
             {advertsList.map((advert, key) => (
                 <Link to={`/adverts/${advert.id}`} key={key} className="m-3">
                     <div className="max-w-sm rounded overflow-hidden">
-                        <img className="w-full rounded-lg" src="https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true" alt={`${advert.name}`} />
+                        <img className="w-full rounded-lg" src={advert.imgSrc} alt={`${advert.name}`} />
                         <div className="flex justify-between w-full mt-1">
                             <span className="text-gray-700 font-bold text-xl">{advert.price} $</span>
                             <span className="bg-[--primary-color] font-bold text-white rounded-md text-xs py-1 px-2 hover:bg-[--secondary-color]">{advert.tags}</span>
@@ -81,6 +78,5 @@ function RenderAdvertList({ advertsList }) {
                 </Link>
             ))}
         </>
-    )
+    );
 }
-
