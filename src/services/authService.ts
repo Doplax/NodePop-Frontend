@@ -5,10 +5,10 @@ import { storage } from '@utils/storage';
 export const login = async (credentials, rememberPassword) => {
     try {
         const response = await client.post('/api/auth/login', credentials);
-        const { accessToken } = response.data;
-        setAuthorizationHeader(accessToken);
+        const { token } = response.data;
+        setAuthorizationHeader(token);
 
-        if (rememberPassword) { storage.set('auth', accessToken)}
+        if (rememberPassword) { storage.set('auth', token)}
 
     } catch (error) {
         console.error("Error en el inicio de sesión:", error);

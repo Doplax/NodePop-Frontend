@@ -1,6 +1,6 @@
 import {client} from '../api/client'
 
-const advertsBaseUrl = '/api/v1/adverts';
+const advertsBaseUrl = '/api/products';
 
 
 export const getSingleAdvert = (advertId) => {

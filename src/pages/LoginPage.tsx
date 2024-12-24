@@ -46,9 +46,10 @@ export const LoginPage = () => {
         }))
     }
 
-    const handleChange = () => {
-        (event) => {setRememberPassword(event.target.checked)}
+    const handleChange = (event) => { 
+        setRememberPassword(event.target.checked);
     }
+    
 
     return (
         <div className='w-screen h-screen items-center  flex justify-center bg-[#29363dcc]'>

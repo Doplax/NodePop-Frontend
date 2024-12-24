@@ -37,7 +37,7 @@ export function AdvertsPage() {
             try {
                 setIsFetching(true)
                 const response = await getAdverts();
-                filterAdverts(response.data);
+                filterAdverts(response.data.data);
                 setIsFetching(false)
             } catch (err) {
                 console.log('Error: ', err);
@@ -47,19 +47,14 @@ export function AdvertsPage() {
         console.log(searchValue);
     }, [searchValue,selectedTag]);
 
-
-
-  
-
     return (
         <div>
-                <LabelsBar/>
+            <LabelsBar/>
             <div className="flex flex-wrap justify-center">
                 {isFetching
                     ? <Spinner />
                     : <RenderAdvertList advertsList={advertsList} />
                 }
-
             </div>
         </div>
     );
