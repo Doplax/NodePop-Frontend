@@ -28,7 +28,6 @@ export function AdvertPage() {
 
                 const response = await getSingleAdvert(advertId);
                 const { name, sale, price, tags, id } = response.data
-                console.log(response.data);
                 setAdvertData({ ...advertData, id, name, sale, price, tags });
             } catch (error) {
                 console.error('Error', error);

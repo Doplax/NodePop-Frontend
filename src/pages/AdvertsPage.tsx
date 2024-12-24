@@ -14,6 +14,9 @@ export function AdvertsPage() {
 
     const filterAdverts = (unOrderAdvertsList) => {
         let advertslist = unOrderAdvertsList
+        debugger
+        console.table(advertsList);
+        
         if (searchValue !== ''){
             advertslist = advertslist.filter(advert =>
                 advert.name.toLowerCase().includes(searchValue)
@@ -44,7 +47,6 @@ export function AdvertsPage() {
             }
         };
         fetchData();
-        console.log(searchValue);
     }, [searchValue,selectedTag]);
 
     return (

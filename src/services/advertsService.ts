@@ -16,7 +16,6 @@ export const getAdverts = () => {
 
 export const createAdvert = (advert) => {
     const url = advertsBaseUrl;
-    console.log(client.defaults.headers.common['Authorization']);
     return client.post(url, advert);
 }
 

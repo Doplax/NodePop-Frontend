@@ -20,7 +20,6 @@ export const LoginPage = () => {
 
 
     const navigate = useNavigate()
-    console.log("login");
     const [credentials, setCredentials] = useState<Credentials>({
         email: 'pedro@gmail.com',
         password: 'pedro',
