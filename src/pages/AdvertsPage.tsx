@@ -37,7 +37,7 @@ export function AdvertsPage() {
             try {
                 setIsFetching(true);
                 const response = await getAdverts();
-                filterAdverts(response.data.data);
+                filterAdverts(response.data);
                 setIsFetching(false);
             } catch (err) {
                 console.log('Error: ', err);
@@ -63,7 +63,7 @@ function RenderAdvertList({ advertsList }) {
     return (
         <>
             {advertsList.map((advert, key) => (
-                <Link to={`/adverts/${advert.id}`} key={key} className="m-3">
+                <Link to={`/adverts/${advert._id}`} key={key} className="m-3">
                     <div className="max-w-sm rounded overflow-hidden">
                         <img className="w-full rounded-lg" src={advert.imgSrc} alt={`${advert.name}`} />
                         <div className="flex justify-between w-full mt-1">

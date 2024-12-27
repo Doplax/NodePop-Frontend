@@ -16,6 +16,8 @@ interface Credentials {
 }
 
 export const LoginPage = () => {
+  console.log("BackendURL",import.meta.env.VITE_REACT_APP_API_BASE_URL);
+
     const { onLogin } = useAuthHandlers();
 
 
@@ -41,7 +43,7 @@ export const LoginPage = () => {
     const handleCredentials = (event) => {
         setCredentials(currentCredentials => ({
             ...currentCredentials,
-            [event.target.name]: event.target.value, // Es necesaria la propiedad name en el input de abajo para que esto funcione
+            [event.target.name]: event.target.value,
         }))
     }
 

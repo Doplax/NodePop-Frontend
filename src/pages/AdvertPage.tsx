@@ -12,12 +12,12 @@ export function AdvertPage() {
     const navigate = useNavigate()
 
     const [advertData, setAdvertData] = useState({
-        id: '',
+        _id: '',
         name: '',
         sale: false,
         price: 0,
         tags: ['tag'],
-        image: 'https://github.com/Doplax/doplax/blob/main/assets/img/product/defaultImage.png?raw=true'
+        imgSrc: ''
     });
 
 
@@ -25,10 +25,9 @@ export function AdvertPage() {
     useEffect(() => {
         const fetchAdvert = async () => {
             try {
-
                 const response = await getSingleAdvert(advertId);
-                const { name, sale, price, tags, id } = response.data
-                setAdvertData({ ...advertData, id, name, sale, price, tags });
+                const { name, sale, price, tags, _id, imgSrc } = response.data
+                setAdvertData({ ...advertData, _id, name, sale, price, tags, imgSrc });
             } catch (error) {
                 console.error('Error', error);
                 navigate('/404')
@@ -56,7 +55,8 @@ function RenderAdvert({ advertData }) {
 
     const onDelete = async () => {
         try {
-            await deleteAdvert(advertData.id)
+            //debugger
+            await deleteAdvert(advertData._id)
             navigate('/')
         } catch (error) {
             console.log(error);
@@ -73,7 +73,7 @@ function RenderAdvert({ advertData }) {
             <div className="container px-5 py-24 mx-auto" >
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                     <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                        src={advertData.image} />
+                        src={advertData.imgSrc} />
                     <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0" >
                         <h2 className="text-sm title-font text-gray-500 tracking-widest" >
                             {advertData.sale ? 'ON SALE' : 'NOT ON LSAE'}

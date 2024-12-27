@@ -40,7 +40,6 @@ export const NewAdvertPage = () => {
             ...currentCredentials,
             [event.target.name]: value,
         }));
-        console.table(event.target.name);
     }
 
 

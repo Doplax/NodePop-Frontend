@@ -4,7 +4,6 @@ import { useFilterHandlers } from '../Filters/FiltersContext'
 export function SearchBar() {
     const navigate = useNavigate()
     const {pathname} = useLocation ()
-    console.table(pathname);
     const { onSearchValueChange}   = useFilterHandlers()
     
     const handleSearch = (event) => {
