@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@components/styledComponents/Button.tsx";
 import { HambButton } from '@components/svg/HambButton'
 import logo from "/images/logo.webp";
@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import { AuthButton } from '@auth/AuthButton'
 import { SearchBar } from '../../Filters/SearchBar'
 
-const RenderNavLinks = ({toggleMenu}) => {
+interface RenderNavLinksProps {
+  toggleMenu: (value: boolean) => void;
+}
 
-
+const RenderNavLinks: React.FC<RenderNavLinksProps> = ({ toggleMenu }) => {
   return (
     <>
         <li className="mb-1 flex justify-center md:px-1 py-2">
@@ -30,13 +32,13 @@ const RenderNavLinks = ({toggleMenu}) => {
   );
 };
 
-export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = (value) => {
+export const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  
+  const toggleMenu = (value: boolean): void => {
     setIsMenuOpen(value);
   };
   
-
   return (
     <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-1">
       <div className="flex flex-row w-full justify-between">

@@ -1,17 +1,15 @@
+import React from 'react';
 import { useNavigate , useLocation  } from "react-router-dom";
 import { useFilterHandlers } from '../Filters/FiltersContext'
 
-export function SearchBar() {
+export const SearchBar: React.FC = () => {
     const navigate = useNavigate()
     const {pathname} = useLocation ()
     const { onSearchValueChange}   = useFilterHandlers()
     
-    const handleSearch = (event) => {
-
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
         onSearchValueChange(event.target.value)
         if (pathname !== '/adverts') {navigate('/adverts')}
-        
-
     }
   return (
     <div className="flex items-center justify-center flex-1 mx-5">

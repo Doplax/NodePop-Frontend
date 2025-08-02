@@ -1,18 +1,18 @@
+import React, { useState } from 'react';
 import { Button } from "@components/styledComponents/Button";
 import { useFilterHandlers } from '../Filters/FiltersContext'
-import { useState } from 'react';
 
-export function LabelsBar() {
+export const LabelsBar: React.FC = () => {
   const { onSelectedTagChange } = useFilterHandlers();
-  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedTag, setSelectedTag] = useState<string>('');
 
-  const handleClick = (event) => {
-    const tagName = event.target.name;
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const tagName = (event.target as HTMLButtonElement).name;
     setSelectedTag(tagName);
     onSelectedTagChange(tagName);
   };
 
-  const renderButton = (name, label) => {
+  const renderButton = (name: string, label: string): JSX.Element => {
     return (
       <Button 
         $variant={selectedTag === name ? "fullFill" : "default"} 
@@ -33,4 +33,4 @@ export function LabelsBar() {
         {renderButton("work", "Work")}
     </div>
   );
-}
+};

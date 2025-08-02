@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 
 import { getSingleAdvert } from "@services/advertsService";
 import { deleteAdvert } from '@services/advertsService'
 import { Button } from '@components/styledComponents/Button'
 import { Spinner } from '@components/Spinner/Spinner'
+import { Advert, RenderAdvertProps, ModalProps } from '@shared/index';
 
-
-export function AdvertPage() {
-    const { advertId } = useParams()
+export const AdvertPage: React.FC = () => {
+    const { advertId } = useParams<{ advertId: string }>()
     const navigate = useNavigate()
 
-    const [advertData, setAdvertData] = useState({
+    const [advertData, setAdvertData] = useState<Advert>({
         _id: '',
         name: '',
         sale: false,
@@ -20,11 +20,13 @@ export function AdvertPage() {
         imgSrc: ''
     });
 
-
-
     useEffect(() => {
-        const fetchAdvert = async () => {
+        const fetchAdvert = async (): Promise<void> => {
             try {
+                if (!advertId) {
+                    navigate('/404');
+                    return;
+                }
                 const response = await getSingleAdvert(advertId);
                 const { name, sale, price, tags, _id, imgSrc } = response.data
                 setAdvertData({ ...advertData, _id, name, sale, price, tags, imgSrc });
@@ -48,12 +50,12 @@ export function AdvertPage() {
     )
 }
 
-function RenderAdvert({ advertData }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const RenderAdvert: React.FC<RenderAdvertProps> = ({ advertData }) => {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const navigate = useNavigate()
 
-    const onDelete = async () => {
+    const onDelete = async (): Promise<void> => {
         try {
             //debugger
             await deleteAdvert(advertData._id)
@@ -63,7 +65,7 @@ function RenderAdvert({ advertData }) {
         }
     }
 
-    const onClose = () => {
+    const onClose = (): void => {
         setIsModalOpen(false)
     }
 
@@ -165,7 +167,7 @@ function RenderAdvert({ advertData }) {
     )
 }
 
-const Modal = ({ onClose, onDelete }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, onDelete }) => {
 
 
     return (

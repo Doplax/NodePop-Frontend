@@ -1,4 +1,6 @@
+import React from 'react';
 import textLogo from '/images/textLogo.png'
+import { ColumnProps } from '@shared/index';
 
 export default function Footer() {
   const wallapopLinks = ['Quiénes somos', 'Cómo funciona', 'Brand Book', 'Prensa', 'Empleo', '10º aniversario'];
@@ -6,7 +8,6 @@ export default function Footer() {
   const legalLinks = ['Aviso legal', 'Condiciones de uso', 'Política de privacidad', 'Política de Cookies'];
   const motorLinks = ['Particulares', 'Profesionales'];
   const wallapopProLinks = ['Impulsa tu negocio'];
-
 
   return (
    <footer className="mt-20 md:px-36 flex justify-center flex-wrap">
@@ -24,8 +25,7 @@ export default function Footer() {
   )
 }
 
-
-function Column({ title, links }) {
+const Column: React.FC<ColumnProps> = ({ title, links }) => {
   return (
     <div className="flex-1 m-5">
       <h3 className="text-[#607D8B] font-bold">{title}</h3>
@@ -38,6 +38,6 @@ function Column({ title, links }) {
       </ul>
     </div>
   );
-}
+};
 
 
