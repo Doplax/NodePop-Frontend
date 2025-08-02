@@ -29,7 +29,7 @@ export const AdvertPage: React.FC = () => {
                 }
                 const response = await getSingleAdvert(advertId);
                 const { name, sale, price, tags, _id, imgSrc } = response.data
-                setAdvertData({ ...advertData, _id, name, sale, price, tags, imgSrc });
+                setAdvertData({ _id, name, sale, price, tags, imgSrc });
             } catch (error) {
                 console.error('Error', error);
                 navigate('/404')
@@ -37,7 +37,7 @@ export const AdvertPage: React.FC = () => {
         };
 
         fetchAdvert();
-    }, []);
+    }, [advertId, navigate]);
 
     return (
         <>

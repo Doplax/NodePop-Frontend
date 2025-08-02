@@ -1,35 +1,29 @@
+import React, { useState } from 'react';
 import { BackArrow } from '@components/svg/BackArrow'
 import { Cross } from '@components/svg/Cross'
 import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
-import { useState } from 'react';
 
 import { login } from '../services/authService'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuthHandlers } from '@auth/AuthContextProvider'
+import { LoginCredentials } from '@shared/index';
 
-
-interface Credentials {
-    email?: string;
-    password?: string;
-}
-
-export const LoginPage = () => {
+export const LoginPage: React.FC = () => {
   console.log("BackendURL",import.meta.env.VITE_REACT_APP_API_BASE_URL);
 
     const { onLogin } = useAuthHandlers();
 
-
     const navigate = useNavigate()
-    const [credentials, setCredentials] = useState<Credentials>({
+    const [credentials, setCredentials] = useState<LoginCredentials>({
         email: 'pedro@gmail.com',
         password: 'pedro',
     })
 
-    const [rememberPassword, setRememberPassword] = useState(false)
+    const [rememberPassword, setRememberPassword] = useState<boolean>(false)
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
        try{
         event.preventDefault();
         await login(credentials,rememberPassword)
@@ -40,14 +34,14 @@ export const LoginPage = () => {
        }
     }
 
-    const handleCredentials = (event) => {
+    const handleCredentials = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setCredentials(currentCredentials => ({
             ...currentCredentials,
             [event.target.name]: event.target.value,
         }))
     }
 
-    const handleChange = (event) => { 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => { 
         setRememberPassword(event.target.checked);
     }
     
@@ -67,8 +61,8 @@ export const LoginPage = () => {
                 <div className='flex flex-col'>
                     <Input value={credentials.email} name='email' onChange={handleCredentials} placeholder='Direccion de email' type="text" />
                     <Input value={credentials.password} name='password' onChange={handleCredentials} placeholder='Contraseña' type="password" />
-                    <label className='m-5' onChange={handleChange}>
-                        <input type="checkbox" />
+                    <label className='m-5'>
+                        <input type="checkbox" onChange={handleChange} />
                         <span> Recordar contraseña</span>
                     </label>
                 </div>

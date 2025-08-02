@@ -1,7 +1,7 @@
 import { StorageInterface, StorageKey } from '@shared/interfaces/Storage';
 
 export const storage: StorageInterface = {
-    get<T = any>(key: StorageKey): T | null {
+    get<T = unknown>(key: StorageKey): T | null {
         const value = localStorage.getItem(key);
         if (!value) {
             return null;
@@ -14,7 +14,7 @@ export const storage: StorageInterface = {
         }
     },
 
-    set<T = any>(key: StorageKey, value: T): void {
+    set<T = unknown>(key: StorageKey, value: T): void {
         try {
             localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {

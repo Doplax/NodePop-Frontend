@@ -1,50 +1,52 @@
+import React, { useEffect, useState, useCallback } from "react";
 import { getAdverts } from "@services/advertsService";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spinner } from '@components/Spinner/Spinner';
 //import { useAuthHandlers } from '../Filters/FiltersContext'
 import { useFilterValues } from '../Filters/FiltersContext';
 import { LabelsBar } from '../Filters/LabelsBar';
+import { Advert, RenderAdvertListProps } from '@shared/index';
 
-export function AdvertsPage() {
-    const [advertsList, setAdvertsList] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
+export const AdvertsPage: React.FC = () => {
+    const [advertsList, setAdvertsList] = useState<Advert[]>([]);
+    const [isFetching, setIsFetching] = useState<boolean>(false);
     
     const { searchValue, selectedTag } = useFilterValues();
 
-    const filterAdverts = (unOrderAdvertsList) => {
+    const filterAdverts = useCallback((unOrderAdvertsList: Advert[]): Advert[] => {
         let filteredAdverts = unOrderAdvertsList; // Cambiado el nombre para evitar colisiones
         
         if (searchValue !== '') {
-            filteredAdverts = filteredAdverts.filter(advert =>
+            filteredAdverts = filteredAdverts.filter((advert: Advert) =>
                 advert.name.toLowerCase().includes(searchValue)
             );
         } 
         
         if (selectedTag !== '') {
-            filteredAdverts = filteredAdverts.filter(objeto =>
-                objeto.tags.some(tag => 
+            filteredAdverts = filteredAdverts.filter((objeto: Advert) =>
+                objeto.tags.some((tag: string) => 
                     tag.toLowerCase().includes(selectedTag)
                 )
             );
         }
         
-        setAdvertsList(filteredAdverts);
-    };
+        return filteredAdverts;
+    }, [searchValue, selectedTag]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (): Promise<void> => {
             try {
                 setIsFetching(true);
                 const response = await getAdverts();
-                filterAdverts(response.data);
+                const filteredData = filterAdverts(response.data);
+                setAdvertsList(filteredData);
                 setIsFetching(false);
             } catch (err) {
                 console.log('Error: ', err);
             }
         };
         fetchData();
-    }, [searchValue, selectedTag]);
+    }, [searchValue, selectedTag, filterAdverts]);
 
     return (
         <div>
@@ -59,10 +61,10 @@ export function AdvertsPage() {
     );
 }
 
-function RenderAdvertList({ advertsList }) {
+const RenderAdvertList: React.FC<RenderAdvertListProps> = ({ advertsList }) => {
     return (
         <>
-            {advertsList.map((advert, key) => (
+            {advertsList.map((advert: Advert, key: number) => (
                 <Link to={`/adverts/${advert._id}`} key={key} className="m-3">
                     <div className="max-w-sm rounded overflow-hidden">
                         <img className="w-full rounded-lg" src={advert.imgSrc} alt={`${advert.name}`} />

@@ -1,31 +1,34 @@
+import React, { useState } from 'react';
 import { BackArrow } from '@components/svg/BackArrow'
 import { Cross } from '@components/svg/Cross'
 import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
-import { useState } from 'react';
 import { createAdvert } from '../services/advertsService'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Select } from '@components/styledComponents/Select';
+import { CreateAdvertFormData } from '@shared/index';
 
-
-export const NewAdvertPage = () => {
+export const NewAdvertPage: React.FC = () => {
     const navigate = useNavigate();
 
-
-    const [advertData, setAdvertData] = useState({
+    const [advertData, setAdvertData] = useState<CreateAdvertFormData>({
         name: 'product',
         sale: true,
         price: 100,
         tags: '',
-
     })
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         try {
-            const response = await createAdvert(advertData)
-            const advertId = response.data.id
+            // Convert form data to API format
+            const apiData = {
+                ...advertData,
+                tags: [advertData.tags] // Convert string to array
+            };
+            const response = await createAdvert(apiData)
+            const advertId = response.data._id // Use _id instead of id
             console.log(advertId);
             navigate(`../${advertId}`, { relative: 'path' });
 
@@ -34,8 +37,8 @@ export const NewAdvertPage = () => {
         }
     }
 
-    const handleCredentials = (event) => {
-        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    const handleCredentials = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+        const value = event.target.type === 'checkbox' ? (event.target as HTMLInputElement).checked : event.target.value;
         setAdvertData(currentCredentials => ({
             ...currentCredentials,
             [event.target.name]: value,
