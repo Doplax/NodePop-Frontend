@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App.js'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
-import {AuthContextProvider} from './auth/AuthContextProvider.jsx'
+import {AuthContextProvider} from './auth/AuthContextProvider'
 import { storage } from '@utils/storage'
-import { setAuthorizationHeader } from './api/client.js'
+import { setAuthorizationHeader } from './api/client'
 import {FilterContextProvider}  from '../src/Filters/FiltersContext'
 
 const accessToken = storage.get('auth');
