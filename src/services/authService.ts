@@ -1,5 +1,5 @@
 import  {client, removeAuthorizationHeader, setAuthorizationHeader } from '../api/client';
-import { storage } from '@utils/storage';
+import { storage } from 'src/shared/utils/storage';
 
 
 export const login = async (credentials, rememberPassword) => {

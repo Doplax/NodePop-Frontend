@@ -1,7 +1,7 @@
 import { useIsLogged } from '@auth/AuthContextProvider'
 import { Button } from '@components/styledComponents/Button'
 import { Link } from "react-router-dom";
-import { storage } from  '@utils/storage' 
+import { storage } from  'src/shared/utils/storage' 
 
 import { useAuthHandlers } from '@auth/AuthContextProvider'
 

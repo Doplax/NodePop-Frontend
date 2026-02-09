@@ -4,7 +4,7 @@ import App from './App.js'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import {AuthContextProvider} from './auth/AuthContextProvider'
-import { storage } from '@utils/storage'
+import { storage } from 'src/shared/utils/storage.js'
 import { setAuthorizationHeader } from './api/client'
 import {FilterContextProvider}  from '../src/Filters/FiltersContext'
 
