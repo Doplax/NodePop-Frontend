@@ -5,7 +5,7 @@ import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
 import { Link } from "react-router-dom";
 import { AuthButton } from '@auth/AuthButton';
-import { SearchBar } from '../../Filters/SearchBar';
+import { SearchBar } from '@filters/SearchBar';
 
 interface RenderNavLinksProps {
   toggleMenu: (value: boolean) => void;

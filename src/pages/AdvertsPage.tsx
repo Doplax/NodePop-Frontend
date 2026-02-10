@@ -2,9 +2,9 @@ import { getAdverts } from "@services/advertsService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Spinner } from '@components/Spinner/Spinner';
-//import { useAuthHandlers } from '../Filters/FiltersContext'
-import { useFilterValues } from '../Filters/FiltersContext';
-import { LabelsBar } from '../Filters/LabelsBar';
+//import { useAuthHandlers } from '@filters/FiltersContext'
+import { useFilterValues } from '@filters/FiltersContext';
+import { LabelsBar } from '@filters/LabelsBar';
 
 export function AdvertsPage() {
     const [advertsList, setAdvertsList] = useState([]);

@@ -1,5 +1,5 @@
 import { useNavigate , useLocation  } from "react-router-dom";
-import { useFilterHandlers } from '../Filters/FiltersContext'
+import { useFilterHandlers } from '@filters/FiltersContext'
 
 export function SearchBar() {
     const navigate = useNavigate()

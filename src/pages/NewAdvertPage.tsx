@@ -3,7 +3,7 @@ import { Cross } from '@components/svg/Cross'
 import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
-import { createAdvert } from '../services/advertsService'
+import { createAdvert } from '@services/advertsService'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Select } from '@components/styledComponents/Select';

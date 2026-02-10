@@ -1,5 +1,5 @@
 import { Button } from "@components/styledComponents/Button";
-import { useFilterHandlers } from '../Filters/FiltersContext'
+import { useFilterHandlers } from '@filters/FiltersContext'
 import { useState } from 'react';
 
 export function LabelsBar() {

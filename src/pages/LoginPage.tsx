@@ -4,7 +4,7 @@ import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState } from 'react';
 
-import { login } from '../services/authService'
+import { login } from '@services/authService'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useAuthHandlers } from '@auth/AuthContextProvider'
@@ -24,7 +24,7 @@ export const LoginPage = () => {
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState<Credentials>({
         email: 'pedro@gmail.com',
-        password: 'pedro',
+        password: '1234',
     })
 
     const [rememberPassword, setRememberPassword] = useState(false)
