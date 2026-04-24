@@ -2,20 +2,21 @@ import { useIsLogged } from '@auth/AuthContextProvider'
 import { Button } from '@components/styledComponents/Button'
 import { Link } from "react-router-dom";
 import { storage } from '@shared/utils/storage'
-
 import { useAuthHandlers } from '@auth/AuthContextProvider'
 
+interface AuthButtonProps {
+  toggleMenu: (value: boolean) => void;
+}
 
-export function AuthButton({toggleMenu}) {
+export function AuthButton({ toggleMenu }: AuthButtonProps) {
   const IsLogged = useIsLogged()
 
   const { onLogout } = useAuthHandlers();
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     toggleMenu(false)
     onLogout()
     storage.remove('auth')
-
   }
   
   return (

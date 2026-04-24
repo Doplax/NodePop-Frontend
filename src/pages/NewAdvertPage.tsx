@@ -2,30 +2,33 @@ import { BackArrow } from '@components/svg/BackArrow'
 import { Cross } from '@components/svg/Cross'
 import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { createAdvert } from '@services/advertsService'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Select } from '@components/styledComponents/Select';
+import { CreateProductDTO, Tag } from '@shared/dtos';
 
+interface FormData extends CreateProductDTO {
+    sale: boolean;
+}
 
 export const NewAdvertPage = () => {
     const navigate = useNavigate();
 
-
-    const [advertData, setAdvertData] = useState({
+    const [advertData, setAdvertData] = useState<FormData>({
         name: 'product',
         sale: true,
         price: 100,
-        tags: '',
-
+        tags: [],
+        isForSale: true,
     })
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         try {
             const response = await createAdvert(advertData)
-            const advertId = response.data.id
+            const advertId = response.data._id
             console.log(advertId);
             navigate(`../${advertId}`, { relative: 'path' });
 
@@ -34,12 +37,26 @@ export const NewAdvertPage = () => {
         }
     }
 
-    const handleCredentials = (event) => {
-        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
-        setAdvertData(currentCredentials => ({
-            ...currentCredentials,
-            [event.target.name]: value,
-        }));
+    const handleCredentials = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+        const { name, value, type } = event.target as HTMLInputElement;
+
+        if (type === 'checkbox') {
+            const checked = (event.target as HTMLInputElement).checked;
+            setAdvertData(current => ({
+                ...current,
+                [name]: checked,
+            }));
+        } else if (name === 'tags') {
+            setAdvertData(current => ({
+                ...current,
+                [name]: value ? [value as Tag] : [],
+            }));
+        } else {
+            setAdvertData(current => ({
+                ...current,
+                [name]: name === 'price' ? parseFloat(value) : value,
+            }));
+        }
     }
 
 

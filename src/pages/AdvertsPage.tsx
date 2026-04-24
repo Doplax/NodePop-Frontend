@@ -5,35 +5,36 @@ import { Spinner } from '@components/Spinner/Spinner';
 //import { useAuthHandlers } from '@filters/FiltersContext'
 import { useFilterValues } from '@filters/FiltersContext';
 import { LabelsBar } from '@filters/LabelsBar';
+import { Product } from '@shared/dtos';
 
 export function AdvertsPage() {
-    const [advertsList, setAdvertsList] = useState([]);
+    const [advertsList, setAdvertsList] = useState<Product[]>([]);
     const [isFetching, setIsFetching] = useState(false);
-    
+
     const { searchValue, selectedTag } = useFilterValues();
 
-    const filterAdverts = (unOrderAdvertsList) => {
-        let filteredAdverts = unOrderAdvertsList; // Cambiado el nombre para evitar colisiones
-        
+    const filterAdverts = (unOrderAdvertsList: Product[]): void => {
+        let filteredAdverts = unOrderAdvertsList;
+
         if (searchValue !== '') {
             filteredAdverts = filteredAdverts.filter(advert =>
                 advert.name.toLowerCase().includes(searchValue)
             );
-        } 
-        
+        }
+
         if (selectedTag !== '') {
             filteredAdverts = filteredAdverts.filter(objeto =>
-                objeto.tags.some(tag => 
+                objeto.tags?.some(tag =>
                     tag.toLowerCase().includes(selectedTag)
                 )
             );
         }
-        
+
         setAdvertsList(filteredAdverts);
     };
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async (): Promise<void> => {
             try {
                 setIsFetching(true);
                 const response = await getAdverts();
@@ -59,7 +60,11 @@ export function AdvertsPage() {
     );
 }
 
-function RenderAdvertList({ advertsList }) {
+interface RenderAdvertListProps {
+    advertsList: Product[];
+}
+
+function RenderAdvertList({ advertsList }: RenderAdvertListProps) {
     return (
         <>
             {advertsList.map((advert, key) => (

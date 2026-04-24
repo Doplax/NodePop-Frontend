@@ -25,7 +25,12 @@ export default function Footer() {
 }
 
 
-function Column({ title, links }) {
+interface ColumnProps {
+  title: string;
+  links: string[];
+}
+
+function Column({ title, links }: ColumnProps) {
   return (
     <div className="flex-1 m-5">
       <h3 className="text-[#607D8B] font-bold">{title}</h3>

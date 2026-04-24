@@ -5,29 +5,31 @@ import { getSingleAdvert } from "@services/advertsService";
 import { deleteAdvert } from '@services/advertsService'
 import { Button } from '@components/styledComponents/Button'
 import { Spinner } from '@components/Spinner/Spinner'
-
+import { Product } from '@shared/dtos'
 
 export function AdvertPage() {
-    const { advertId } = useParams()
+    const { advertId } = useParams<{ advertId: string }>()
     const navigate = useNavigate()
 
-    const [advertData, setAdvertData] = useState({
+    const [advertData, setAdvertData] = useState<Product>({
         _id: '',
         name: '',
         sale: false,
         price: 0,
-        tags: ['tag'],
-        imgSrc: ''
+        tags: [],
+        imgSrc: '',
+        isForSale: true
     });
 
-
-
     useEffect(() => {
-        const fetchAdvert = async () => {
+        const fetchAdvert = async (): Promise<void> => {
+            if (!advertId) {
+                navigate('/404');
+                return;
+            }
             try {
                 const response = await getSingleAdvert(advertId);
-                const { name, sale, price, tags, _id, imgSrc } = response.data
-                setAdvertData({ ...advertData, _id, name, sale, price, tags, imgSrc });
+                setAdvertData(response.data);
             } catch (error) {
                 console.error('Error', error);
                 navigate('/404')
@@ -35,7 +37,7 @@ export function AdvertPage() {
         };
 
         fetchAdvert();
-    }, []);
+    }, [advertId, navigate]);
 
     return (
         <>
@@ -48,12 +50,16 @@ export function AdvertPage() {
     )
 }
 
-function RenderAdvert({ advertData }) {
+interface RenderAdvertProps {
+    advertData: Product;
+}
+
+function RenderAdvert({ advertData }: RenderAdvertProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const navigate = useNavigate()
 
-    const onDelete = async () => {
+    const onDelete = async (): Promise<void> => {
         try {
             //debugger
             await deleteAdvert(advertData._id)
@@ -63,7 +69,7 @@ function RenderAdvert({ advertData }) {
         }
     }
 
-    const onClose = () => {
+    const onClose = (): void => {
         setIsModalOpen(false)
     }
 
@@ -165,9 +171,12 @@ function RenderAdvert({ advertData }) {
     )
 }
 
-const Modal = ({ onClose, onDelete }) => {
+interface ModalProps {
+    onClose: () => void;
+    onDelete: () => Promise<void>;
+}
 
-
+const Modal = ({ onClose, onDelete }: ModalProps) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div className="bg-white rounded-lg shadow-xl overflow-hidden p-6 w-full max-w-md">
@@ -190,7 +199,6 @@ const Modal = ({ onClose, onDelete }) => {
                     </Button>
                     <Button
                         $size="full"
-
                         onClick={onClose}
                     >
                         Cancelar

@@ -16,7 +16,7 @@
 
     /* Linting */
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -31,6 +31,7 @@
       "@pages/*": ["src/pages/*"],
       "@services/*": ["src/services/*"],
       "@shared/*": ["src/shared/*"],
+      "@dtos/*": ["src/shared/dtos/*"],
 
 
 
