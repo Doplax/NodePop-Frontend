@@ -1,27 +1,15 @@
 import Footer from "./Footer";
 import { Header } from "./Header";
-import { Navigate, Outlet } from "react-router-dom";
-import { useIsLogged } from '@auth/AuthContextProvider'
+import { Outlet } from "react-router-dom";
 
-
-
-export default function Index() {
-  
-
-
-  const IsLogged = useIsLogged()
+export default function Layout() {
   return (
-    <>
-      {IsLogged 
-        ?
-          <div className="flex flex-col">
-            <Header />
-              <Outlet/>
-            <Footer/>
-          </div>
-        :
-          <Navigate to='/login'/>
-      }
-    </>
-  )
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
 }
