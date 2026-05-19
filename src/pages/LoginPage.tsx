@@ -1,65 +1,64 @@
-import { BackArrow } from '@components/svg/BackArrow'
-import { Cross } from '@components/svg/Cross'
-import { Input } from '@components/styledComponents/Input'
-import { Button } from '@components/styledComponents/Button'
+import { BackArrow } from '@components/svg/BackArrow';
+import { Cross } from '@components/svg/Cross';
+import { Input } from '@components/styledComponents/Input';
+import { Button } from '@components/styledComponents/Button';
 import { useState, FormEvent, ChangeEvent } from 'react';
 
-import { login, LoginError } from '@services/authService'
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useAuthHandlers } from '@auth/AuthContextProvider'
-import { LoginDTO } from '@shared/dtos'
+import { login, LoginError } from '@services/authService';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useAuthHandlers } from '@auth/AuthContextProvider';
+import { LoginDTO } from '@shared/dtos';
+
+interface LocationState {
+    from?: string;
+}
 
 export const LoginPage = () => {
     const { onLogin } = useAuthHandlers();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const [credentials, setCredentials] = useState<LoginDTO>({
-        email: 'pedro@gmail.com',
-        password: '1234',
-    })
+        email: '',
+        password: '',
+    });
+    const [rememberPassword, setRememberPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const [rememberPassword, setRememberPassword] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
+    const isValid = credentials.email.length > 0 && credentials.password.length > 0;
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+        event.preventDefault();
+        if (!isValid) return;
+        setError(null);
+        setIsLoading(true);
         try {
-            event.preventDefault();
-            setError(null);
-            setIsLoading(true);
-
-            await login(credentials, rememberPassword)
+            await login(credentials, rememberPassword);
             onLogin();
-            navigate('/')
+            const target = (location.state as LocationState | null)?.from ?? '/';
+            navigate(target, { replace: true });
         } catch (err) {
             const loginError = err as LoginError;
-            const errorMsg = loginError.message || 'Error al iniciar sesión';
-            setError(errorMsg);
-            console.error("Login error:", loginError);
+            setError(loginError.message || 'Error al iniciar sesión');
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     const handleCredentials = (event: ChangeEvent<HTMLInputElement>): void => {
-        setCredentials(currentCredentials => ({
-            ...currentCredentials,
+        setCredentials((current) => ({
+            ...current,
             [event.target.name]: event.target.value,
-        }))
-    }
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setRememberPassword(event.target.checked);
-    }
-    
+        }));
+    };
 
     return (
         <div className='w-screen h-screen items-center flex justify-center bg-[#29363dcc]'>
             <form className='bg-white w-[400px] h-max p-8 rounded-lg' onSubmit={handleSubmit}>
                 <div className='flex justify-between'>
-                    <Link to="/"><BackArrow/></Link>
-                    <Link to="/"><Cross/></Link>
+                    <Link to="/"><BackArrow /></Link>
+                    <Link to="/"><Cross /></Link>
                 </div>
 
                 <div className='my-3'>
@@ -67,18 +66,20 @@ export const LoginPage = () => {
                 </div>
 
                 {error && (
-                    <div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded'>
+                    <div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded' role='alert'>
                         {error}
                     </div>
                 )}
 
-                <div className='flex flex-col'>
+                <div className='flex flex-col gap-2'>
                     <Input
                         value={credentials.email}
                         name='email'
                         onChange={handleCredentials}
-                        placeholder='Direccion de email'
+                        placeholder='Dirección de email'
                         type="email"
+                        autoComplete='email'
+                        required
                         disabled={isLoading}
                     />
                     <Input
@@ -87,11 +88,18 @@ export const LoginPage = () => {
                         onChange={handleCredentials}
                         placeholder='Contraseña'
                         type="password"
+                        autoComplete='current-password'
+                        required
                         disabled={isLoading}
                     />
                     <label className='m-5'>
-                        <input type="checkbox" onChange={handleChange} disabled={isLoading} />
-                        <span> Recordar contraseña</span>
+                        <input
+                            type="checkbox"
+                            checked={rememberPassword}
+                            onChange={(e) => setRememberPassword(e.target.checked)}
+                            disabled={isLoading}
+                        />
+                        <span> Recordar sesión</span>
                     </label>
                 </div>
 
@@ -100,12 +108,12 @@ export const LoginPage = () => {
                         $size='full'
                         $variant='fullFill'
                         type='submit'
-                        disabled={isLoading}
+                        disabled={isLoading || !isValid}
                     >
-                        {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+                        {isLoading ? 'Iniciando sesión…' : 'Iniciar sesión'}
                     </Button>
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};

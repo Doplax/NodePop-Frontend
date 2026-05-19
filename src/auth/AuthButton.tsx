@@ -1,36 +1,35 @@
-import { useIsLogged } from '@auth/AuthContextProvider'
-import { Button } from '@components/styledComponents/Button'
-import { Link } from "react-router-dom";
-import { storage } from '@shared/utils/storage'
-import { useAuthHandlers } from '@auth/AuthContextProvider'
+import { useIsLogged, useAuthHandlers } from '@auth/AuthContextProvider';
+import { Button } from '@components/styledComponents/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '@services/authService';
 
 interface AuthButtonProps {
   toggleMenu: (value: boolean) => void;
 }
 
 export function AuthButton({ toggleMenu }: AuthButtonProps) {
-  const IsLogged = useIsLogged()
-
+  const isLogged = useIsLogged();
   const { onLogout } = useAuthHandlers();
+  const navigate = useNavigate();
 
-  const handleLogout = (): void => {
-    toggleMenu(false)
-    onLogout()
-    storage.remove('auth')
+  const handleLogout = async (): Promise<void> => {
+    toggleMenu(false);
+    await logout();
+    onLogout();
+    navigate('/');
+  };
+
+  if (isLogged) {
+    return (
+      <Button onClick={handleLogout} $variant="default">
+        Cerrar sesión
+      </Button>
+    );
   }
-  
-  return (
-    <>
 
-      {IsLogged
-        ? <Button onClick={()=>{handleLogout()}} $variant='default'>Cerrar sesión</Button>
-        : <Link
-            to='/login'
-            onClick={() => {toggleMenu(false) }}
-          >
-            <Button $variant='default'>Inicia sesión</Button>
-          </Link>
-      }
-    </>
-  )
+  return (
+    <Link to="/login" onClick={() => toggleMenu(false)}>
+      <Button $variant="default">Inicia sesión</Button>
+    </Link>
+  );
 }
