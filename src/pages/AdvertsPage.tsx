@@ -28,7 +28,7 @@ export function AdvertsPage() {
                 if (!cancelled) {
                     setAdverts(result.items);
                 }
-            } catch (err) {
+            } catch {
                 if (!cancelled) {
                     setError('No pudimos cargar los productos. Inténtalo más tarde.');
                     setAdverts([]);
