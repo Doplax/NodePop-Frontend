@@ -15,7 +15,7 @@ export function SearchBar() {
     <div className="flex items-center justify-center flex-1 mx-5">
     <input
       id="searchBar"
-        className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:border-stone-700 focus:outline-none"
+        className="pl-4 p-2 flex-1 rounded-full text-sm placeholder-gray-400 border focus:border-2 focus:border-stone-700 focus:outline-hidden"
         type="search"
         placeholder="Buscar en Todas las categorías"
         onChange={handleSearch}

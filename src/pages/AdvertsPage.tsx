@@ -83,7 +83,7 @@ function AdvertList({ items }: AdvertListProps) {
         <>
             {items.map((advert) => (
                 <Link to={`/adverts/${advert._id}`} key={advert._id} className="m-3">
-                    <div className="max-w-sm rounded overflow-hidden">
+                    <div className="max-w-sm rounded-sm overflow-hidden">
                         {advert.imgSrc ? (
                             <img
                                 className="w-full rounded-lg aspect-square object-cover"
@@ -99,7 +99,7 @@ function AdvertList({ items }: AdvertListProps) {
                         <div className="flex justify-between w-full mt-1">
                             <span className="text-gray-700 font-bold text-xl">{advert.price} $</span>
                             {advert.tags?.[0] && (
-                                <span className="bg-[--primary-color] font-bold text-white rounded-md text-xs py-1 px-2 hover:bg-[--secondary-color]">
+                                <span className="bg-(--primary-color) font-bold text-white rounded-md text-xs py-1 px-2 hover:bg-(--secondary-color)">
                                     {advert.tags.join(', ')}
                                 </span>
                             )}

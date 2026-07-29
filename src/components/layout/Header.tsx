@@ -35,7 +35,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-sm bg-white mb-1">
+    <header className="flex flex-col items-center justify-between w-full px-5 md:py-2  text-lg text-gray-700 shadow-xs bg-white mb-1">
       <div className="flex flex-row w-full justify-between">
         {/* Logo */}
         <Link className="flex justify-center items-center" to="/">

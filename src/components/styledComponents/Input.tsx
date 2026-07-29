@@ -34,5 +34,5 @@ export const Input = styled.input`
 //border-radius: 8px;
 //flex: none;
 //order: 0;
-//flex-grow: 0;
+//grow: 0;
 //margin: 0;

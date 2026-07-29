@@ -111,7 +111,7 @@ export const NewAdvertPage = () => {
                 </div>
 
                 {error && (
-                    <div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded'>
+                    <div className='mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-sm'>
                         {error}
                     </div>
                 )}

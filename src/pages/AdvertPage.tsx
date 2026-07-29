@@ -72,11 +72,11 @@ function AdvertDetail({ advert }: AdvertDetailProps) {
                     {advert.imgSrc ? (
                         <img
                             alt={advert.name}
-                            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded-sm"
                             src={advert.imgSrc}
                         />
                     ) : (
-                        <div className="lg:w-1/2 w-full h-64 rounded bg-gray-100 flex items-center justify-center text-gray-400">
+                        <div className="lg:w-1/2 w-full h-64 rounded-sm bg-gray-100 flex items-center justify-center text-gray-400">
                             Sin imagen
                         </div>
                     )}
@@ -92,7 +92,7 @@ function AdvertDetail({ advert }: AdvertDetailProps) {
                                 {advert.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="bg-[--primary-color] text-white text-xs px-2 py-1 rounded-md"
+                                        className="bg-(--primary-color) text-white text-xs px-2 py-1 rounded-md"
                                     >
                                         {tag}
                                     </span>
