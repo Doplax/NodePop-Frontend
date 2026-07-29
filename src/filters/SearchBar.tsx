@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { useFilterHandlers } from '@filters/FiltersContext'
 import { ChangeEvent } from 'react';
 

@@ -1,6 +1,6 @@
 import { useIsLogged, useAuthHandlers } from '@auth/AuthContextProvider';
 import { Button } from '@components/styledComponents/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { logout } from '@services/authService';
 
 interface AuthButtonProps {

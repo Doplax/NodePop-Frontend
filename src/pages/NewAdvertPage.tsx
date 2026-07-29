@@ -4,7 +4,7 @@ import { Input } from '@components/styledComponents/Input'
 import { Button } from '@components/styledComponents/Button'
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { createAdvert } from '@services/advertsService'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router';
 import { Select } from '@components/styledComponents/Select';
 import { PRODUCT_TAGS, Tag } from '@shared/dtos';
 import axios from 'axios';

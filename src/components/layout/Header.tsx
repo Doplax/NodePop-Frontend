@@ -3,7 +3,7 @@ import { Button } from "@components/styledComponents/Button.tsx";
 import { HambButton } from '@components/svg/HambButton';
 import logo from "/images/logo.webp";
 import textLogo from "/images/textLogo.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { AuthButton } from '@auth/AuthButton';
 import { SearchBar } from '@filters/SearchBar';
 

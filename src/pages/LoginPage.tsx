@@ -5,7 +5,7 @@ import { Button } from '@components/styledComponents/Button';
 import { useState, FormEvent, ChangeEvent } from 'react';
 
 import { login, LoginError } from '@services/authService';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router';
 import { useAuthHandlers } from '@auth/AuthContextProvider';
 import { LoginDTO } from '@shared/dtos';
 

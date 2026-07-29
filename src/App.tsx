@@ -7,7 +7,7 @@ import { PageNotFound } from "@pages/PageNotFound";
 import Layout from "@components/layout";
 import { RequireAuth } from '@auth/RequireAuth';
 
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router";
 
 function App() {
   return (

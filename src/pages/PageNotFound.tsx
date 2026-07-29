@@ -1,6 +1,6 @@
 import { Button } from '@components/styledComponents/Button'
 import error404 from '/images/error404.webp'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export function PageNotFound(){
     return(
