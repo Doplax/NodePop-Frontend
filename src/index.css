@@ -18,6 +18,19 @@
   }
 }
 
+/*
+  Tailwind v4 también cambió el color de los placeholders: v3 usaba gray-400 y
+  v4 hereda `currentColor`, lo que hace que el texto de ayuda se vea como texto
+  ya escrito. Los inputs de login y de alta de producto no llevan clase
+  `placeholder-*` propia, así que restauramos el gris de v3.
+*/
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
+  }
+}
+
 :root {
   --primary-color: #13c1ac; /* Color primario hipotético */
   --secondary-color: #0f9989; /* Color secundario hipotético */
