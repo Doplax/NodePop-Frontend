@@ -5,8 +5,8 @@ import { Button } from '@components/styledComponents/Button';
 import { useState, FormEvent, ChangeEvent } from 'react';
 
 import { login, LoginError } from '@services/authService';
-import { useLocation, useNavigate, Link } from 'react-router';
-import { useAuthHandlers } from '@auth/AuthContextProvider';
+import { useLocation, useNavigate, Link, Navigate } from 'react-router';
+import { useAuthHandlers, useIsLogged } from '@auth/AuthContextProvider';
 import { LoginDTO } from '@shared/dtos';
 
 interface LocationState {
@@ -15,6 +15,7 @@ interface LocationState {
 
 export const LoginPage = () => {
     const { onLogin } = useAuthHandlers();
+    const isLogged = useIsLogged();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -52,6 +53,12 @@ export const LoginPage = () => {
             [event.target.name]: event.target.value,
         }));
     };
+
+    // Con sesión abierta no tiene sentido mostrar el formulario: entrar aquí y
+    // fallar el login dejaba al usuario en un estado confuso.
+    if (isLogged) {
+        return <Navigate to='/' replace />;
+    }
 
     return (
         <div className='w-screen h-screen items-center flex justify-center bg-[#29363dcc]'>

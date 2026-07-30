@@ -21,10 +21,18 @@ client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     return config;
 });
 
+// Endpoints donde un 401 significa "estas credenciales no valen", no "tu sesión
+// ha caducado". Sin esta excepción, equivocarse de contraseña en /login cerraba
+// la sesión que el usuario ya tenía abierta.
+const AUTH_ENDPOINTS = ['/api/auth/login', '/api/auth/register'];
+
+const isAuthEndpoint = (url?: string): boolean =>
+    !!url && AUTH_ENDPOINTS.some((endpoint) => url.includes(endpoint));
+
 client.interceptors.response.use(
     (response) => response,
     (error: AxiosError) => {
-        if (error.response?.status === 401) {
+        if (error.response?.status === 401 && !isAuthEndpoint(error.config?.url)) {
             removeAuthorizationHeader();
             if (typeof window !== 'undefined' && listenersBound) {
                 window.dispatchEvent(new CustomEvent(UNAUTHORIZED_EVENT));
