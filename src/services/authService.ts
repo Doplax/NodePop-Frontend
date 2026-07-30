@@ -4,7 +4,7 @@ import {
     setAuthorizationHeader,
 } from '@api/client';
 import { storage } from '@shared/utils/storage';
-import { LoginDTO, LoginResponseDTO } from '@shared/dtos';
+import { LoginDTO, LoginResponseDTO, User } from '@shared/dtos';
 import axios, { AxiosError } from 'axios';
 
 export interface LoginError {
@@ -82,6 +82,16 @@ export const login = async (
             status: axiosError.response?.status,
         } as LoginError;
     }
+};
+
+/**
+ * Comprueba contra la API que el token guardado sigue siendo válido.
+ * Un token en localStorage no prueba nada: puede estar caducado o pertenecer a
+ * un usuario ya borrado, y hasta ahora la UI se fiaba de su simple presencia.
+ */
+export const getCurrentUser = async (): Promise<User> => {
+    const response = await client.get<{ data: User }>('/api/auth/me');
+    return response.data.data;
 };
 
 export const logout = async (): Promise<void> => {
